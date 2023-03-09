@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
-export default function Home() {
+export default function Technology() {
     return (
         <>
             <Head>
@@ -13,6 +13,7 @@ export default function Home() {
             <div className="container grid h-full grid-cols-1 grid-rows-home place-items-end justify-items-start px-6 lg:px-24 xl:grid-cols-2 xl:px-40">
                 <article className="text-center xl:text-left">
                     <h5 className="tracking-widest text-accent">
+                        {" "}
                         So, you want to travel to
                     </h5>
                     <h1 className="spicy mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat">
@@ -33,7 +34,7 @@ export default function Home() {
                     <h4>
                         <Link
                             href="/destination"
-                            className="relative inline-grid aspect-square place-items-center rounded-[50%] bg-secondary px-[1.9425em] uppercase tracking-exp text-primary"
+                            className="relative inline-grid aspect-square place-items-center rounded-[50%] bg-secondary px-[1.65em] uppercase text-primary"
                         >
                             Explore
                         </Link>

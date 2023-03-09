@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
-export default function Home() {
+export default function Crew() {
     return (
         <>
             <Head>
@@ -33,7 +33,7 @@ export default function Home() {
                     <h4>
                         <Link
                             href="/destination"
-                            className="relative inline-grid aspect-square place-items-center rounded-[50%] bg-secondary px-[1.9425em] uppercase tracking-exp text-primary"
+                            className="relative inline-grid aspect-square place-items-center rounded-[50%] bg-secondary px-[1.65em] uppercase text-primary"
                         >
                             Explore
                         </Link>
