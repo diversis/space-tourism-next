@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             <Navbar />
             <main
                 id="main"
-                className="grid h-full grid-rows-[1fr] justify-items-center "
+                className="grid grid-rows-[1fr] justify-items-center "
             >
                 {children}
             </main>

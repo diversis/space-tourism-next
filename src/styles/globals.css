@@ -13,8 +13,8 @@
         border-width: 0;
     }
     html {
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: hidden;
+
         -webkit-text-size-adjust: none; /* for iOS Safari */
         text-size-adjust: none; /* for other mobile browsers */
         background-color: black;
@@ -28,6 +28,7 @@
         min-height: 100vh;
         max-width: 100%;
         overflow-x: clip;
+        overflow-y: auto;
         text-rendering: optimizeSpeed;
         font-weight: 500;
         @apply font-barlow text-lg;
@@ -50,7 +51,7 @@
         }
     }
 
-    body > div {
+    body > #__next {
         width: 100%;
         min-height: 100vh;
         display: grid;
@@ -99,7 +100,7 @@
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-primary;
+        @apply bg-primary/25 backdrop-blur-sm;
     }
 
     ::-webkit-scrollbar-thumb {
@@ -110,6 +111,7 @@
 
 @layer components {
     #sky {
+        pointer-events: none;
         width: 100vw;
         height: 100vh;
         position: fixed;

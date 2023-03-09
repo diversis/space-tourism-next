@@ -2,6 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+import { AnimatePresence, motion } from "framer-motion";
+import Explore from "@/lib/buttons/explore";
 
 export default function Home() {
     return (
@@ -10,7 +12,7 @@ export default function Home() {
                 <title>Frontend Mentor | Space tourism - Home</title>
             </Head>
 
-            <div className="container grid h-full grid-cols-1 grid-rows-home place-items-end justify-items-start px-6 lg:px-24 xl:grid-cols-2 xl:px-40">
+            <div className="container grid h-full grid-cols-1 grid-rows-home place-items-end justify-items-start overflow-y-clip px-6 lg:px-24 xl:grid-cols-2 xl:px-40">
                 <article className="text-center xl:text-left">
                     <h5 className="tracking-widest text-accent">
                         So, you want to travel to
@@ -29,15 +31,8 @@ export default function Home() {
                     </p>
                 </article>
 
-                <div className="h-fit justify-self-end ">
-                    <h4>
-                        <Link
-                            href="/destination"
-                            className="relative inline-grid aspect-square place-items-center rounded-[50%] bg-secondary px-[1.9425em] uppercase tracking-exp text-primary"
-                        >
-                            Explore
-                        </Link>
-                    </h4>
+                <div className="relative h-min w-min justify-self-end ">
+                    <Explore />
                 </div>
             </div>
         </>
