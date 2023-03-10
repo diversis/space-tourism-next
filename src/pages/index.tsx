@@ -6,6 +6,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import Explore from "@/lib/buttons/explore";
 
 export default function Home() {
+
+    const h5Text="So, you want to travel to"
+    const h1Text="Space"
+
+    const sentence = {
+        hidden:{
+            opacity:1
+        }
+    }
     return (
         <>
             <Head>

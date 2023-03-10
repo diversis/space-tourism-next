@@ -15,13 +15,16 @@ export default function Navbar() {
                         return (
                             <li
                                 key={`nav-${item.name}`}
-                                className={`${
-                                    router && router.pathname == item.url
-                                        ? "border-secondary"
-                                        : "border-transparent "
-                                } grid h-full place-items-center border-b-[3px] uppercase text-secondary transition-colors [&:is(:hover,:active)]:border-secondary/50   [&>a]:py-8 [&>a]:text-center`}
+                                className={` grid h-full place-items-center  uppercase text-secondary transition-colors `}
                             >
-                                <Link href={item.url}>
+                                <Link
+                                    href={item.url}
+                                    className={`${
+                                        router && router.pathname == item.url
+                                            ? "border-secondary "
+                                            : "border-transparent "
+                                    } text-shadow border-b-[3px] py-8   text-center [&:is(:hover,:focus)]:border-secondary/50`}
+                                >
                                     <span className="inline-block pr-2 font-bold tracking-wider md:hidden xl:inline-block">
                                         {id.toLocaleString("en-US", {
                                             minimumIntegerDigits: 2,

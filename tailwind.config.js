@@ -58,6 +58,9 @@ module.exports = {
                     "75%": { "background-position": "bottom left" },
                 },
             },
+            boxShadow: {
+                exp: "0 0 1rem 0.3em hsla(231, 77%, 90%, 0.9), inset 3px -3px 2px -1px hsla(230, 35%, 7%, 0.5),inset 0 0 1rem 1em hsla(0,0%,0%, 0.9), inset 0 0 1em 0.5em hsla(230, 35%, 7%, 1)",
+            },
         },
     },
     plugins: [],

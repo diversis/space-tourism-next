@@ -91,9 +91,9 @@
 
     /* custom scrollbar */
 
-    body {
+    /* body {
         scrollbar-gutter: stable both-edges;
-    }
+    } */
 
     ::-webkit-scrollbar {
         min-width: 100%;
@@ -157,6 +157,10 @@
     .text-shadow {
         text-shadow: -1px 1px 1px hsla(0, 0%, 100%, 0.25),
             1px -1px 1px hsla(0, 0%, 0%, 0.25);
+    }
+
+    .round-mask {
+        mask: radial-gradient(transparent 65%, black 75%);
     }
 
     /* Spicy */

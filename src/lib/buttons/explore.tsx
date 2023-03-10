@@ -1,7 +1,5 @@
-import anime from "animejs";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 
 // sky from https://codepen.io/sharnajh/pen/WNvppRy
 
@@ -12,31 +10,39 @@ export default function Explore() {
                 "repeating-conic-gradient(from 0turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
             backgroundSize: "cover",
             scale: 1,
+            opacity: 0,
             transition: {
-                duration: 2,
-                type: "tween",
+                duration: 4,
+                type: "spring",
                 ease: "easeIn",
+                bounce: 0.5,
+                stiffness: 10,
             },
         },
         hover: {
-            backgroundImage:
+            backgroundImage: [
+                "repeating-conic-gradient(from 0.1turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
+                "repeating-conic-gradient(from 0.5turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
+                "repeating-conic-gradient(from 0.65turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
+                "repeating-conic-gradient(from 0.8turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
                 "repeating-conic-gradient(from 1turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
+            ],
             scale: [1, 1.2, 1.4, 1.5],
-
+            opacity: 1,
             transition: {
-                duration: 0.4,
+                duration: 0.5,
                 type: "tween",
                 ease: "easeOut",
             },
         },
         tap: {
             backgroundImage:
-                "repeating-conic-gradient(from 0.7turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
+                "repeating-conic-gradient(from 1turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
             scale: [1.5, 1.25, 1.2],
 
             transition: {
                 duration: 0.4,
-                type: "tween",
+                type: "spring",
                 ease: "easeOut",
             },
         },
@@ -70,7 +76,8 @@ export default function Explore() {
     };
     const exploreMotionShadow = {
         rest: {
-            backgroundColor: "hsla(0,0%,100%,0.05)",
+            borderColor: "hsla(0,0%,100%,0.05)",
+            opacity: 1,
             scale: 1,
             transition: {
                 duration: 0,
@@ -79,12 +86,14 @@ export default function Explore() {
             },
         },
         hover: {
-            backgroundColor: "hsla(0,0%,100%,0)",
-            scale: [1, 20, 20, 1],
+            opacity: 0,
+            scale: [1, 5, 5, 1],
             transition: {
                 duration: 2,
-                type: "tween",
+                type: "spring",
                 ease: "easeOut",
+                repeat: Infinity,
+                repeatDelay: 1,
             },
         },
         tap: {
@@ -97,32 +106,35 @@ export default function Explore() {
             },
         },
     };
+
     return (
         <h4 className=" h-min w-min">
             <AnimatePresence>
-                <motion.a
-                    initial="rest"
-                    whileHover="hover"
-                    whileFocus="hover"
-                    animate="rest"
-                    whileTap="tap"
-                    href="/"
-                    className="relative z-30 inline-grid aspect-square place-items-center rounded-[50%] px-[1.9425em] uppercase tracking-exp text-primary"
-                >
-                    <motion.span
-                        variants={exploreMotionBorder}
-                        className="pointer-events-none absolute inset-0 -z-20 rounded-full"
-                    ></motion.span>
-                    <motion.span
-                        variants={exploreMotionBg}
-                        className="pointer-events-none absolute inset-0 -z-10 rounded-full"
-                    ></motion.span>
-                    <motion.span
-                        variants={exploreMotionShadow}
-                        className="pointer-events-none absolute inset-0 -z-20 rounded-full"
-                    ></motion.span>
-                    Explore
-                </motion.a>
+                <MotionConfig reducedMotion="user">
+                    <motion.a
+                        initial="rest"
+                        whileHover="hover"
+                        whileFocus="hover"
+                        animate="rest"
+                        whileTap="tap"
+                        href="/"
+                        className="explore relative z-30 inline-grid aspect-square place-items-center rounded-[50%] border-[5px] border-solid border-transparent px-[1.7865em] uppercase tracking-exp text-primary outline-none transition-all focus:border-primary [&:is(:hover,:focus)]:shadow-exp"
+                    >
+                        <motion.span
+                            variants={exploreMotionBorder}
+                            className="round-mask explore-border  pointer-events-none absolute inset-0 -z-20 rounded-full "
+                        ></motion.span>
+                        <motion.span
+                            variants={exploreMotionBg}
+                            className="pointer-events-none absolute inset-0 -z-10 rounded-full"
+                        ></motion.span>
+                        <motion.span
+                            variants={exploreMotionShadow}
+                            className="pointer-events-none absolute inset-0 -z-20 rounded-full border-4"
+                        ></motion.span>
+                        Explore
+                    </motion.a>
+                </MotionConfig>
             </AnimatePresence>
         </h4>
     );
