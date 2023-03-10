@@ -162,6 +162,9 @@
     .round-mask {
         mask: radial-gradient(transparent 65%, black 75%);
     }
+    .linear-mask {
+        mask: linear-gradient(to left, transparent 50%, black 80%);
+    }
 
     /* Spicy */
     @supports ((background-clip: text) or (-webkit-background-clip: text)) and
