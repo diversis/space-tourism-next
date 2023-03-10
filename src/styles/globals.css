@@ -184,11 +184,11 @@
 
         @supports (
             -webkit-box-reflect: below -0.65em
-                linear-gradient(transparent 45%, #fff)
+                linear-gradient(transparent 52%, #fff)
         ) {
             .spicy {
                 -webkit-box-reflect: below -0.65em linear-gradient(transparent
-                            45%, #fff);
+                            52%, #fff);
             }
         }
     }

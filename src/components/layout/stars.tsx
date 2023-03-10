@@ -1,6 +1,6 @@
 import useWindowSize from "@/lib/hooks/use-window-size";
-import anime from "animejs";
 import { useEffect, useState } from "react";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 
 // sky from https://codepen.io/sharnajh/pen/WNvppRy
 
@@ -12,47 +12,38 @@ export default function Stars() {
     let [vw, setVw] = useState(0);
     let [vh, setVh] = useState(0);
 
-    const starryNight = () => {
-        anime({
-            targets: ["#sky .star"],
-            opacity: [
-                {
-                    duration: 700,
-                    value: "0",
-                },
-                {
-                    duration: 700,
-                    value: "1",
-                },
-            ],
-            easing: "linear",
-            loop: true,
-            delay: (el, i) => 100 * i,
-        });
+    const sky: Variants = {
+        visible: {
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
     };
-    const shootingStars = () => {
-        anime({
-            targets: ["#shootingstars"],
-            easing: "linear",
-            loop: true,
-            delay: (el, i) => 2000 * i,
-            opacity: [
-                {
-                    duration: 700,
-                    value: "1",
-                },
-            ],
-            width: [
-                {
-                    value: "150px",
-                },
-                {
-                    value: "0px",
-                },
-            ],
-            translateX: 350,
-        });
+
+    const stars: Variants = {
+        initial: {
+            opacity: 0,
+
+            transition: {
+                duration: 0.7,
+                type: "tween",
+                ease: "easeIn",
+            },
+        },
+        visible: {
+            opacity: [0, 1, 1, 0],
+
+            transition: {
+                times: [0, 0.2, 0.8, 1],
+                duration: 5,
+                type: "tween",
+                ease: "easeIn",
+                repeat: Infinity,
+                repeatDelay: 5,
+            },
+        },
     };
+
     const randomRadius = () => {
         return Math.random() * 2 + 0.6;
     };
@@ -68,8 +59,8 @@ export default function Stars() {
     };
     useEffect(() => {
         setRender(true);
-        starryNight();
-        shootingStars();
+        // starryNight();
+
         setVw(
             Math.max(
                 document.documentElement.clientWidth,
@@ -82,28 +73,36 @@ export default function Stars() {
                 window.innerHeight || 0,
             ),
         );
-    }, [render, isDesktop]);
+    }, [isDesktop]);
 
     return (
         <>
-            {render && (
-                <svg id="sky">
-                    {[...Array(num)].map((x, y) => (
-                        <circle
-                            cx={getRandomX()}
-                            cy={getRandomY()}
-                            r={randomRadius()}
-                            stroke="none"
-                            strokeWidth="0"
-                            fill={`hsl(${Math.floor(Math.random() * 250)},${
-                                20 + Math.floor(Math.random() * 80)
-                            }%,${80 + Math.floor(Math.random() * 20)}%)`}
-                            key={`star-${y}`}
-                            className="star"
-                        />
-                    ))}
-                </svg>
-            )}
+            <AnimatePresence>
+                {render && (
+                    <motion.svg
+                        id="sky"
+                        initial="hidden"
+                        animate="visible"
+                        variants={sky}
+                    >
+                        {[...Array(num)].map((x, y) => (
+                            <motion.circle
+                                cx={getRandomX()}
+                                cy={getRandomY()}
+                                r={randomRadius()}
+                                stroke="none"
+                                strokeWidth="0"
+                                fill={`hsl(${Math.floor(Math.random() * 250)},${
+                                    20 + Math.floor(Math.random() * 80)
+                                }%,${80 + Math.floor(Math.random() * 20)}%)`}
+                                key={`star-${y}`}
+                                className="star"
+                                variants={stars}
+                            />
+                        ))}
+                    </motion.svg>
+                )}
+            </AnimatePresence>
         </>
     );
 }

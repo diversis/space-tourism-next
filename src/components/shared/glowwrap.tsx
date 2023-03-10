@@ -12,8 +12,8 @@ export default function GlowWrap({
     length = "20px",
     className = "",
     opacity = "0",
-    lineColor = "stroke-primary-500",
-    blurColor = "stroke-primary-500",
+    lineColor = "stroke-accent",
+    blurColor = "stroke-accent",
     ...props
 }: // log = false,
 {

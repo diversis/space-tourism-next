@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, Variants, motion } from "framer-motion";
 
 // sky from https://codepen.io/sharnajh/pen/WNvppRy
 
 export default function Explore() {
-    const exploreMotionBorder = {
+    const exploreMotionBorder: Variants = {
         rest: {
             backgroundImage:
                 "repeating-conic-gradient(from 0turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
@@ -12,10 +12,9 @@ export default function Explore() {
             scale: 1,
             opacity: 0,
             transition: {
-                duration: 4,
                 type: "spring",
-                ease: "easeIn",
-                bounce: 0.5,
+                mass: 5,
+
                 stiffness: 10,
             },
         },
@@ -42,12 +41,12 @@ export default function Explore() {
 
             transition: {
                 duration: 0.4,
-                type: "spring",
+                type: "tween",
                 ease: "easeOut",
             },
         },
     };
-    const exploreMotionBg = {
+    const exploreMotionBg: Variants = {
         rest: {
             backgroundColor: "hsl(0,0%,100%)",
             transition: {
@@ -74,7 +73,7 @@ export default function Explore() {
             },
         },
     };
-    const exploreMotionShadow = {
+    const exploreMotionShadow: Variants = {
         rest: {
             borderColor: "hsla(0,0%,100%,0.05)",
             opacity: 1,
@@ -87,11 +86,11 @@ export default function Explore() {
         },
         hover: {
             opacity: 0,
-            scale: [1, 5, 5, 1],
+            scale: 10,
             transition: {
-                duration: 2,
-                type: "spring",
-                ease: "easeOut",
+                duration: 4,
+                type: "tween",
+                ease: "backOut",
                 repeat: Infinity,
                 repeatDelay: 1,
             },

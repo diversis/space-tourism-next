@@ -36,8 +36,8 @@ export default function Home() {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.005,
-                delay: 10,
+                staggerChildren: 0.03,
+                delay: 6,
                 when: "beforeChildren",
             },
         },
@@ -45,11 +45,11 @@ export default function Home() {
     const title: Variants = {
         hidden: {
             mask: "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
-            maskPosition: "80% 0%",
+            maskPosition: "70% 0%",
             maskSize: "800%",
             WebkitMask:
                 "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
-            WebkitMaskPosition: "80% 0%",
+            WebkitMaskPosition: "70% 0%",
             WebkitMaskSize: "800%",
             opacity: 1,
         },

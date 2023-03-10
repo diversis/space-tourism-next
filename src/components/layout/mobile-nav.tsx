@@ -1,0 +1,32 @@
+import { AnimatePresence, motion } from "framer-motion";
+import GlowWrap from "../shared/glowwrap";
+import stylesDropdown from "./mobile-nav.module.css";
+import Hamburger from "@/components/shared/icons/hamburger.svg";
+import { type Dispatch, type SetStateAction } from "react";
+
+export default function MobileNav({
+    showMenu,
+    setShowMenu,
+}: {
+    showMenu: boolean;
+    setShowMenu: Dispatch<SetStateAction<boolean>>;
+}) {
+    return (
+        <AnimatePresence>
+            <GlowWrap rx="25px">
+                <motion.button
+                    onClick={() => setShowMenu(!showMenu)}
+                    aria-expanded={showMenu}
+                    className={
+                        stylesDropdown["mobile-nav-toggle"] +
+                        " " +
+                        "stroke:white flex h-8 w-8 items-center justify-center overflow-hidden rounded-full  transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
+                    }
+                >
+                    <span className="sr-only">Menu</span>
+                    <Hamburger />
+                </motion.button>
+            </GlowWrap>
+        </AnimatePresence>
+    );
+}
