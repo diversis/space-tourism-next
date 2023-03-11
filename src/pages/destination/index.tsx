@@ -23,10 +23,25 @@ export default function Destination(
     const [render, setRender] = useState(true);
     const data = props.data;
     const [tab, setTab] = useState(0);
-    const h5Text = "So, you want to travel to";
-    const h1Text = "Space";
-    const longText =
-        "Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!";
+
+    const imageVariants: Variants = {
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 0.7,
+                type: "tween",
+                ease: "backIn",
+            },
+        },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.7,
+                type: "tween",
+                ease: "backOut",
+            },
+        },
+    };
 
     const sentence: Variants = {
         hidden: {
@@ -34,9 +49,6 @@ export default function Destination(
         },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.08,
-            },
         },
     };
     const letter: Variants = {
@@ -54,34 +66,41 @@ export default function Destination(
             opacity: 1,
             transition: {
                 staggerChildren: 0.03,
-                delay: data[tab].name.length - 1,
-                when: "beforeChildren",
+            },
+        },
+    };
+    const articleBlock: Variants = {
+        hidden: {
+            opacity: 0,
+            x: "100%",
+        },
+        visible: {
+            x: "0",
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 150,
+                mass: 0.3,
+                staggerChildren: 0.5,
             },
         },
     };
     const tabName: Variants = {
         hidden: {
-            mask: "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
-            maskPosition: "70% 0%",
-            maskSize: "800%",
-            WebkitMask:
-                "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
-            WebkitMaskPosition: "70% 0%",
-            WebkitMaskSize: "800%",
-            opacity: 1,
+            opacity: 0,
+            transition: {
+                duration: 0.3,
+                type: "tween",
+                ease: "easeOut",
+            },
         },
         visible: {
             opacity: 1,
 
-            maskPosition: "45% 0%",
-
-            WebkitMaskPosition: "45% 0%",
-
             transition: {
-                duration: 6,
+                duration: 0.7,
                 type: "tween",
-                ease: "easeOut",
-                delay: 0.5,
+                ease: "backOut",
             },
         },
     };
@@ -98,106 +117,119 @@ export default function Destination(
                     <div className="col-span-2 w-full text-6xl text-white ">
                         Title
                     </div>
-                    <div className=" flex h-full w-full items-end  justify-self-center">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="flex  w-full justify-center overflow-hidden"
-                        >
-                            <AnimatePresence>
-                                <Image
-                                    width={445}
-                                    height={445}
-                                    alt={`${"f"}`}
-                                    src={`${data[tab]?.images?.webp}`}
-                                    className="aspect-square"
-                                ></Image>
-                            </AnimatePresence>
-                        </motion.div>
+                    <div className="relative flex h-full w-full items-end  justify-self-center">
+                        <AnimatePresence mode="sync">
+                            {Array.isArray(data) &&
+                                data.map((item, key) => {
+                                    return (
+                                        <motion.div
+                                            initial="hidden"
+                                            animate={
+                                                item.name === data[tab].name
+                                                    ? "visible"
+                                                    : "hidden"
+                                            }
+                                            exit="hidden"
+                                            key={`${item.name}-${key}-image`}
+                                            className="absolute inset-0 flex items-end"
+                                        >
+                                            <motion.div
+                                                variants={imageVariants}
+                                                className=" flex  w-full justify-center overflow-hidden"
+                                            >
+                                                <Image
+                                                    width={445}
+                                                    height={445}
+                                                    alt={`${"f"}`}
+                                                    src={`${item.images?.webp}`}
+                                                    className="aspect-square "
+                                                    priority
+                                                ></Image>
+                                            </motion.div>
+                                        </motion.div>
+                                    );
+                                })}
+                        </AnimatePresence>
                     </div>
-                    <AnimatePresence mode="wait">
-                        <motion.article
-                            className="flex flex-col gap-y-4 text-center xl:text-left"
+
+                    {/* className="grid h-full w-full grid-rows-[1fr_min-content_1fr] gap-y-4 text-center xl:text-left" */}
+                    <div className=" flex h-full w-full flex-col items-end gap-y-4 text-center xl:text-left">
+                        <motion.nav
+                            className="w-full tracking-widest text-accent"
                             initial="hidden"
                             animate="visible"
+                            variants={sentence}
                         >
-                            <motion.nav
-                                className="w-full tracking-widest text-accent"
-                                variants={sentence}
-                            >
-                                <ul className="mx-auto flex flex-row justify-center gap-x-[2em] xl:justify-start">
-                                    {Array.isArray(data) &&
-                                        data.map((item, key) => {
-                                            return (
-                                                <li key={`${item.name}-${key}`}>
-                                                    <GlowWrap
-                                                        rx="8px"
-                                                        offset="8px"
-                                                        length="12px"
-                                                        travel="-10"
+                            <ul className="mx-auto flex flex-row justify-center gap-x-[2em] xl:justify-start">
+                                {Array.isArray(data) &&
+                                    data.map((item, key) => {
+                                        return (
+                                            <li key={`${item.name}-${key}-li`}>
+                                                <GlowWrap
+                                                    rx="8px"
+                                                    offset="8px"
+                                                    length="12px"
+                                                    travel="-10"
+                                                >
+                                                    <a
+                                                        href={`#${item.name}`}
+                                                        className={`${
+                                                            item.name ===
+                                                            data[tab].name
+                                                                ? "border-secondary"
+                                                                : "border-transparent"
+                                                        } flex items-center border-b-[3px] py-2 tracking-wider [&:is(:hover,:focus)]:border-secondary/50`}
+                                                        onClick={() => {
+                                                            setTab(key);
+                                                        }}
                                                     >
-                                                        <button
-                                                            className={`${
-                                                                item.name ===
-                                                                data[tab].name
-                                                                    ? "border-secondary"
-                                                                    : "border-transparent"
-                                                            } flex items-center border-b-[3px] py-2 tracking-wider [&:is(:hover,:focus)]:border-secondary/50`}
-                                                            onClick={() => {
-                                                                setTab(key);
-                                                            }}
-                                                        >
-                                                            <span>
-                                                                {item.name.toUpperCase()}
-                                                            </span>
-                                                        </button>
-                                                    </GlowWrap>
-                                                </li>
-                                            );
-                                        })}
-                                </ul>
-                            </motion.nav>
-                            <motion.h2
-                                variants={tabName}
-                                className="spicy linear-mask relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
-                            >
-                                {data[tab].name.toUpperCase()}
-                            </motion.h2>
-                            {render && data[tab].description && (
-                                <motion.p
-                                    className="text-shadow h-[6em] max-w-[46ch] text-accent"
-                                    variants={article}
-                                >
-                                    <Balancer ratio={0.5}>
-                                        {data[tab].description
-                                            .split("")
-                                            .map(
-                                                (
-                                                    char: string,
-                                                    index: number,
-                                                ) => {
-                                                    return (
-                                                        <motion.span
-                                                            key={
-                                                                data[tab].name +
-                                                                "-" +
-                                                                char +
-                                                                "-" +
-                                                                index
-                                                            }
-                                                            variants={letter}
-                                                        >
-                                                            {char}
-                                                        </motion.span>
-                                                    );
-                                                },
-                                            )}
-                                    </Balancer>
-                                </motion.p>
-                            )}
-                        </motion.article>
-                    </AnimatePresence>
+                                                        <span>
+                                                            {item.name.toUpperCase()}
+                                                        </span>
+                                                    </a>
+                                                </GlowWrap>
+                                            </li>
+                                        );
+                                    })}
+                            </ul>
+                        </motion.nav>
+                        <div className="relative h-full w-full">
+                            <AnimatePresence>
+                                {Array.isArray(data) &&
+                                    data.map((item, key) => {
+                                        return (
+                                            <motion.article
+                                                initial="hidden"
+                                                animate={
+                                                    item.name === data[tab].name
+                                                        ? "visible"
+                                                        : "hidden"
+                                                }
+                                                exit="hidden"
+                                                key={`${item.name}-${key}-li`}
+                                                className="absolute inset-0"
+                                                variants={articleBlock}
+                                            >
+                                                <motion.h2
+                                                    variants={tabName}
+                                                    className="spicy relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
+                                                >
+                                                    {item.name.toUpperCase()}
+                                                </motion.h2>
+                                                <motion.p
+                                                    className="text-shadow h-[9em] max-w-[46ch] text-accent"
+                                                    variants={article}
+                                                >
+                                                    <Balancer ratio={0.5}>
+                                                        {item.description}
+                                                    </Balancer>
+                                                </motion.p>
+                                            </motion.article>
+                                        );
+                                    })}
+                            </AnimatePresence>
+                        </div>
+                    </div>
                 </div>
                 <div className="flex-1 xl:basis-[10.375rem]"></div>
             </div>
