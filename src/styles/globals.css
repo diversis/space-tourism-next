@@ -13,8 +13,8 @@
         border-width: 0;
     }
     html {
-        overflow: hidden;
-
+        overflow-x: hidden;
+        overflow-y: auto;
         -webkit-text-size-adjust: none; /* for iOS Safari */
         text-size-adjust: none; /* for other mobile browsers */
         background-color: black;
@@ -25,6 +25,7 @@
     }
 
     body {
+        --path: "home";
         min-height: 100vh;
         max-width: 100%;
         overflow-x: clip;
@@ -39,7 +40,7 @@
         background-size: cover;
     }
 
-    @media screen and (min-width: 768px) {
+    /* @media screen and (min-width: 768px) {
         body {
             background-image: url("/image/home/background-home-tablet.jpg");
         }
@@ -49,7 +50,7 @@
         body {
             background-image: url("/image/home/background-home-desktop.jpg");
         }
-    }
+    } */
 
     body > #__next {
         width: 100%;
@@ -109,18 +110,6 @@
     }
 }
 
-@layer components {
-    #sky {
-        pointer-events: none;
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-    }
-}
-
 @layer utilities {
     /* Typography */
 
@@ -129,7 +118,7 @@
     }
 
     h2 {
-        @apply font-bellefair text-3xl md:text-5xl xl:text-6xl;
+        @apply font-bellefair text-3xl leading-tight md:text-5xl  xl:text-6xl;
     }
     h3 {
         @apply font-bellefair text-[1.5rem] md:text-3xl  xl:text-3xl;
@@ -144,13 +133,13 @@
         @apply font-bellefair text-xl;
     }
     h7 {
-        @apply font-condensed text-sm tracking-wide;
+        @apply font-condensed text-xs tracking-wide;
     }
     nav {
         @apply font-condensed text-base tracking-wider;
     }
     p {
-        @apply text-base lg:text-lg;
+        @apply text-sm md:text-base lg:text-lg;
         line-height: 1.75em;
     }
 
@@ -160,7 +149,7 @@
     }
 
     .round-mask {
-        mask: radial-gradient(transparent 65%, black 75%);
+        mask: radial-gradient(transparent 65%, black 85%);
     }
     .linear-mask {
         mask: linear-gradient(to left, transparent 50%, black 80%);

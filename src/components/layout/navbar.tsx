@@ -18,7 +18,10 @@ export default function Navbar() {
                 <Logo className="ml-12 grid  flex-none basis-12 place-items-center " />
                 <div className="relative m-0 hidden  h-0  flex-grow !border-t-transparent p-0 after:absolute after:-right-24 after:left-0 after:top-0 after:z-10  after:m-0 after:block after:h-0 after:w-[calc(100%+6rem)] after:border-b after:border-solid after:border-secondary/25 xl:block xl:after:content-['']" />
                 {/* Desktop and Tablet navigation menu */}
-                <nav className="hidden h-full overflow-hidden bg-secondary/5 px-32 backdrop-blur-sm md:block ">
+                <nav
+                    aria-label="main navigation"
+                    className="hidden h-full overflow-hidden bg-secondary/5 px-32 backdrop-blur-sm md:block "
+                >
                     <ul className="hidden h-full  md:flex md:flex-row md:gap-x-12">
                         {NAV_LINKS.map((item, id) => {
                             return (
@@ -63,7 +66,18 @@ export default function Navbar() {
                 {/* Mobile navigation menu */}
                 <AnimatePresence>
                     {isMobile && showMenu && (
-                        <motion.nav className="fixed right-0 top-0 z-[1000] h-full bg-secondary/5 backdrop-blur-sm md:hidden">
+                        <motion.nav
+                            aria-label="mobile navigation"
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            transition={{
+                                duration: 0.5,
+                                type: "tween",
+                                ease: "backIn",
+                            }}
+                            exit={{ x: "100%" }}
+                            className="fixed right-0 top-0 z-[1000] h-full bg-secondary/5 backdrop-blur-sm md:hidden"
+                        >
                             <ul className="mt-24 flex h-full w-full flex-col md:hidden md:gap-y-12">
                                 {NAV_LINKS.map((item, id) => {
                                     return (

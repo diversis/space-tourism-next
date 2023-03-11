@@ -7,6 +7,7 @@ export default function GlowWrap({
     rx = "0px",
     speed = "1200ms",
     offset = "0px",
+    travel = "-3.5",
     blur = "5px",
     thickness = "2px",
     length = "20px",
@@ -22,6 +23,7 @@ export default function GlowWrap({
     rx?: string;
     speed?: string;
     offset?: string;
+    travel?: string;
     blur?: string;
     thickness?: string;
     length?: string;
@@ -63,6 +65,7 @@ export default function GlowWrap({
                         ["--glow-line-thickness"]: thickness,
                         ["--glow-line-length"]: length,
                         ["--final-opacity"]: opacity,
+                        ["--travel"]: travel,
                     } as React.CSSProperties
                 }
                 {...props}

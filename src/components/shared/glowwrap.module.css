@@ -14,13 +14,15 @@ as described by Kevin Powell https://codepen.io/kevinpowell/pen/rNrdzdx
         /* --animation-speed: 1200ms; */
         /* do not change, used for calculations */
         --container-offset: 100px;
+        --outline-offset: -48px;
+
         position: relative;
         display: block;
         /* position: absolute;
   inset: 0; */
     }
     .glow-effect:is(:hover, :focus) {
-        outline-offset: -48px;
+        outline-offset: var(--outline-offset);
     }
 
     .glow-container {
@@ -50,7 +52,7 @@ as described by Kevin Powell https://codepen.io/kevinpowell/pen/rNrdzdx
     }
 
     .glow-effect > *:is(:hover, :focus) ~ * > :is(.glow-line, .glow-blur) {
-        stroke-dashoffset: calc(-3.5 * var(--glow-line-length));
+        stroke-dashoffset: calc(var(--travel) * var(--glow-line-length));
         transition: stroke-dashoffset var(--animation-speed) ease-in;
         outline: none;
     }

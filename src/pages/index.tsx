@@ -18,6 +18,8 @@ export default function Home() {
         visible: {
             opacity: 1,
             transition: {
+                delay: 0.5,
+                when: "beforeChildren",
                 staggerChildren: 0.08,
             },
         },
@@ -37,7 +39,7 @@ export default function Home() {
             opacity: 1,
             transition: {
                 staggerChildren: 0.03,
-                delay: 6,
+                delay: 6.5,
                 when: "beforeChildren",
             },
         },
@@ -64,68 +66,71 @@ export default function Home() {
                 duration: 10,
                 type: "tween",
                 ease: "easeOut",
-                delay: 2,
+                delay: 2.75,
                 // times: [0, 0.2, 0.3, 1],
             },
         },
     };
     return (
         <>
-            <Head>
-                <title>Frontend Mentor | Space tourism - Home</title>
-            </Head>
-
-            <div className="container grid h-full grid-cols-1 grid-rows-home place-items-end justify-items-start overflow-y-clip px-6 lg:px-24 xl:grid-cols-2 xl:px-40">
-                <motion.article
-                    className="text-center xl:text-left"
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.h5
-                        className="tracking-widest text-accent"
-                        variants={sentence}
-                    >
-                        {h5Text &&
-                            h5Text.split("").map((char, index) => {
-                                return (
-                                    <motion.span
-                                        key={char + "-" + index}
-                                        variants={letter}
-                                    >
-                                        {char}
-                                    </motion.span>
-                                );
-                            })}
-                    </motion.h5>
-                    <motion.h1
-                        variants={title}
-                        className="spicy linear-mask relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
-                    >
-                        {h1Text}
-                    </motion.h1>
-                    <motion.p
-                        className="text-shadow max-w-[46ch] text-accent"
-                        variants={article}
-                    >
-                        <Balancer ratio={0.5}>
-                            {longText &&
-                                longText.split("").map((char, index) => {
-                                    return (
-                                        <motion.span
-                                            key={char + "-" + index}
-                                            variants={letter}
-                                        >
-                                            {char}
-                                        </motion.span>
-                                    );
-                                })}
-                        </Balancer>
-                    </motion.p>
-                </motion.article>
-
-                <div className="relative h-min w-min justify-self-end ">
-                    <Explore />
+            <div className="flex h-full w-full flex-row">
+                <div className="flex-1 xl:basis-[10.375rem]"></div>
+                <div className="container flex h-full flex-col items-center justify-between gap-y-4 overflow-y-clip py-12 px-6  xl:grid xl:grid-cols-2 xl:grid-rows-[1fr_8rem] xl:place-items-end xl:justify-items-start xl:py-0 ">
+                    <AnimatePresence mode="sync">
+                        <motion.article
+                            className="flex flex-col gap-y-4 text-center xl:text-left"
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            <motion.h5
+                                className="tracking-widest text-accent"
+                                variants={sentence}
+                            >
+                                {h5Text &&
+                                    h5Text.split("").map((char, index) => {
+                                        return (
+                                            <motion.span
+                                                key={char + "-" + index}
+                                                variants={letter}
+                                            >
+                                                {char}
+                                            </motion.span>
+                                        );
+                                    })}
+                            </motion.h5>
+                            <motion.h1
+                                variants={title}
+                                className="spicy linear-mask relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
+                            >
+                                {h1Text}
+                            </motion.h1>
+                            <motion.p
+                                className="text-shadow max-w-[46ch] text-accent"
+                                variants={article}
+                            >
+                                <Balancer ratio={0.5}>
+                                    {longText &&
+                                        longText
+                                            .split("")
+                                            .map((char, index) => {
+                                                return (
+                                                    <motion.span
+                                                        key={char + "-" + index}
+                                                        variants={letter}
+                                                    >
+                                                        {char}
+                                                    </motion.span>
+                                                );
+                                            })}
+                                </Balancer>
+                            </motion.p>
+                        </motion.article>
+                    </AnimatePresence>
+                    <div className="relative h-min w-min justify-self-end ">
+                        <Explore />
+                    </div>
                 </div>
+                <div className="flex-1 xl:basis-[10.375rem]"></div>
             </div>
         </>
     );

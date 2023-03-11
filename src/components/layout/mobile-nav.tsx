@@ -16,6 +16,7 @@ export default function MobileNav({
             <GlowWrap rx="25px">
                 <motion.button
                     onClick={() => setShowMenu(!showMenu)}
+                    onBlur={() => setShowMenu(false)}
                     aria-expanded={showMenu}
                     className={
                         stylesDropdown["mobile-nav-toggle"] +

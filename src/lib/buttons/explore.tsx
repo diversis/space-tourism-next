@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig, Variants, motion } from "framer-motion";
+import Link from "next/link";
 
 // sky from https://codepen.io/sharnajh/pen/WNvppRy
 
@@ -46,6 +47,38 @@ export default function Explore() {
             },
         },
     };
+    const exploreMotionBorderWrap: Variants = {
+        rest: {
+            rotate: "0",
+            transition: {
+                duration: 2,
+                type: "tween",
+                ease: "easeIn",
+            },
+        },
+        hover: {
+            rotate: "-360deg",
+
+            transition: {
+                times: [0, 1],
+                duration: 8,
+                type: "tween",
+                ease: "linear",
+                when: "afterChildren",
+                repeat: Infinity,
+            },
+        },
+        tap: {
+            rotate: "0",
+
+            transition: {
+                duration: 0.4,
+                type: "tween",
+                ease: "easeOut",
+            },
+        },
+    };
+
     const exploreMotionBg: Variants = {
         rest: {
             backgroundColor: "hsl(0,0%,100%)",
@@ -110,29 +143,35 @@ export default function Explore() {
         <h4 className=" h-min w-min">
             <AnimatePresence>
                 <MotionConfig reducedMotion="user">
-                    <motion.a
-                        initial="rest"
-                        whileHover="hover"
-                        whileFocus="hover"
-                        animate="rest"
-                        whileTap="tap"
-                        href="/"
-                        className="explore relative z-30 inline-grid aspect-square place-items-center rounded-[50%] border-[5px] border-solid border-transparent px-[1.7865em] uppercase tracking-exp text-primary outline-none transition-all focus:border-primary [&:is(:hover,:focus)]:shadow-exp"
-                    >
-                        <motion.span
-                            variants={exploreMotionBorder}
-                            className="round-mask explore-border  pointer-events-none absolute inset-0 -z-20 rounded-full "
-                        ></motion.span>
-                        <motion.span
-                            variants={exploreMotionBg}
-                            className="pointer-events-none absolute inset-0 -z-10 rounded-full"
-                        ></motion.span>
-                        <motion.span
-                            variants={exploreMotionShadow}
-                            className="pointer-events-none absolute inset-0 -z-20 rounded-full border-4"
-                        ></motion.span>
-                        Explore
-                    </motion.a>
+                    <Link href="/" legacyBehavior passHref>
+                        <motion.a
+                            initial="rest"
+                            whileHover="hover"
+                            whileFocus="hover"
+                            animate="rest"
+                            whileTap="tap"
+                            className="explore relative z-30 inline-grid aspect-square place-items-center rounded-[50%] border-[5px] border-solid border-transparent px-[1.7865em] uppercase tracking-exp text-primary outline-none transition-all focus:border-primary [&:is(:hover,:focus)]:shadow-exp"
+                        >
+                            <motion.em
+                                variants={exploreMotionBorderWrap}
+                                className=" pointer-events-none absolute inset-0 !block"
+                            >
+                                <motion.span
+                                    variants={exploreMotionBorder}
+                                    className="round-mask explore-border pointer-events-none relative -z-20 !block h-full w-full rounded-full "
+                                ></motion.span>
+                            </motion.em>
+                            <motion.span
+                                variants={exploreMotionBg}
+                                className="pointer-events-none absolute inset-0 -z-10 rounded-full"
+                            ></motion.span>
+                            <motion.span
+                                variants={exploreMotionShadow}
+                                className="pointer-events-none absolute inset-0 -z-20 rounded-full border-4"
+                            ></motion.span>
+                            Explore
+                        </motion.a>
+                    </Link>
                 </MotionConfig>
             </AnimatePresence>
         </h4>

@@ -6,10 +6,6 @@ import Balancer from "react-wrap-balancer";
 export default function Crew() {
     return (
         <>
-            <Head>
-                <title>Frontend Mentor | Space tourism - Home</title>
-            </Head>
-
             <div className="container grid h-full grid-cols-1 grid-rows-home place-items-end justify-items-start px-6 lg:px-24 xl:grid-cols-2 xl:px-40">
                 <article className="text-center xl:text-left">
                     <h5 className="tracking-widest text-accent">

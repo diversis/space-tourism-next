@@ -18,7 +18,8 @@ module.exports = {
                 bellefair: ["Bellefair", ...fontFamily.serif],
             },
             fontSize: {
-                sm: "0.875rem",
+                xs: "0.875rem",
+                sm: "0.9375rem",
                 base: "1rem",
                 lg: "1.125rem",
                 xl: "1.75rem",
@@ -59,7 +60,7 @@ module.exports = {
                 },
             },
             boxShadow: {
-                exp: "0 0 1rem 0.3em hsla(231, 77%, 90%, 0.9), inset 3px -3px 2px -1px hsla(230, 35%, 7%, 0.5),inset 0 0 1rem 1em hsla(0,0%,0%, 0.9), inset 0 0 1em 0.5em hsla(230, 35%, 7%, 1)",
+                exp: "0 0 1rem 0.3em hsla(231, 77%, 90%, 0.3), inset 5px -5px 1em 0.25em hsla(230, 35%, 7%, 0.1)",
             },
         },
     },
