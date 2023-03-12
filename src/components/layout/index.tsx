@@ -7,7 +7,13 @@ import Head from "next/head";
 import Stars from "./stars";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout({
+    children,
+    loading,
+}: {
+    children: ReactNode;
+    loading: boolean;
+}) {
     const router = useRouter();
     let path = router.pathname.toLowerCase();
     if (path === "/") path = "/home";
@@ -60,10 +66,23 @@ export default function Layout({ children }: { children: ReactNode }) {
                     }
                 `}</style>
             </Head>
-            <Stars />
+            <AnimatePresence mode="sync">
+                {!loading && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-0"
+                    >
+                        <Stars />
+                    </motion.div>
+                )}
+            </AnimatePresence>
             <Navbar />
 
-            <main className="overflow-x-hidden">{children}</main>
+            <main className="z-10 overflow-x-hidden [grid-area:2/1]">
+                {children}
+            </main>
         </>
     );
 }

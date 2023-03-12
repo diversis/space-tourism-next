@@ -35,24 +35,53 @@ export const TABS_VARIANTS: Variants = {
         opacity: 1,
     },
 };
+export const APP_WRAPPER_VARIANTS: Variants = {
+    hidden: {
+        opacity: 0,
+        transition: {
+            duration: 0.5,
+        },
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+        },
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            duration: 0.5,
+        },
+    },
+};
 export const ARTICLE_VARIANTS: Variants = {
     hidden: {
-        y: "100%",
+        y: "20rem",
         opacity: 0,
     },
     visible: {
         y: 0,
         opacity: 1,
+        transition: {
+            type: "spring",
+            mass: 0.2,
+            stiffness: 250,
+        },
     },
 };
 export const HR_VARIANTS: Variants = {
     hidden: {
-        x: "100%",
-        opacity: 0,
+        scale: 0,
+        opacity: 0.5,
     },
     visible: {
-        x: 0,
+        scale: 1,
         opacity: 1,
+        transition: {
+            duration: 0.7,
+            ease: "circOut",
+        },
     },
 };
 export const SECTION_VARIANTS: Variants = {

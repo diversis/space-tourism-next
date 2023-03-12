@@ -4,7 +4,7 @@ export default function Document() {
     return (
         <Html lang="en">
             <Head />
-            <body className="transition-[background-image] duration-300">
+            <body className="transition-[background-image] duration-700">
                 <Main />
                 <NextScript />
             </body>

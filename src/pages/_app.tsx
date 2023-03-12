@@ -5,11 +5,17 @@ import { useEffect, useState } from "react";
 import { Provider as RWBProvider } from "react-wrap-balancer";
 import Router from "next/router";
 import Loader from "@/components/shared/Loader.svg";
-import { AnimatePresence, backIn, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { LoadingContext } from "@/components/shared/loading-context";
+import { APP_WRAPPER_VARIANTS } from "@/lib/constants";
 
 export default function App({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        console.log(
+            `\n--------------------\n RLY LOADIN? ${loading} \n--------------------\n`,
+        );
+    }, [loading]);
 
     useEffect(() => {
         // Used for page transition
@@ -28,33 +34,68 @@ export default function App({ Component, pageProps }: AppProps) {
             Router.events.off("routeChangeError", end);
         };
     }, []);
+
     return (
         <RWBProvider>
-            <AnimatePresence onExitComplete={() => window.scrollTo(0, 0)}>
-                <LoadingContext.Provider value={loading}>
-                    <Layout>
-                        {loading ? (
-                            <div className="grid h-full w-full grid-rows-[1fr] place-items-center">
-                                <Loader />
-                            </div>
-                        ) : (
-                            <motion.div
-                                initial={{ scale: 0, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                exit={{ scale: 0, opacity: 0 }}
-                                transition={{
-                                    duration: 0.5,
-                                    type: "tween",
-                                    ease: "backIn",
-                                }}
-                                className="grid h-full w-full grid-rows-[1fr] justify-items-center"
-                            >
-                                <Component {...pageProps} />
-                            </motion.div>
-                        )}
-                    </Layout>
-                </LoadingContext.Provider>
-            </AnimatePresence>
+            <LoadingContext.Provider value={loading}>
+                <Layout loading={loading}>
+                    <MotionConfig reducedMotion="user">
+                        <AnimatePresence
+                            mode="wait"
+                            initial={false}
+                            onExitComplete={() => window.scrollTo(0, 0)}
+                        >
+                            {loading ? (
+                                <motion.div
+                                    key="loader"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{
+                                        scale: 0,
+                                        opacity: 0,
+                                        transition: { duration: 0.1 },
+                                    }}
+                                    transition={{
+                                        duration: 0.1,
+                                        type: "tween",
+                                        ease: "linear",
+                                    }}
+                                    onAnimationStart={(definition) => {
+                                        console.log(
+                                            "Started animating",
+                                            definition,
+                                        );
+                                    }}
+                                    variants={APP_WRAPPER_VARIANTS}
+                                    className="grid h-full w-full grid-rows-[1fr] place-items-center"
+                                >
+                                    <Loader />
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    key="main-wrap"
+                                    initial={{ x: "100%", opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    exit={{
+                                        x: "100%",
+                                        opacity: 0,
+                                        transition: { duration: 0.3 },
+                                    }}
+                                    transition={{
+                                        duration: 0.3,
+                                        type: "spring",
+                                        mass: 0.2,
+                                        stiffness: 250,
+                                    }}
+                                    className="grid h-full w-full grid-rows-[1fr] justify-items-center"
+                                >
+                                    <Component {...pageProps} />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </MotionConfig>
+                </Layout>
+            </LoadingContext.Provider>
         </RWBProvider>
     );
 }

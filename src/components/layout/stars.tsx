@@ -2,23 +2,38 @@ import useWindowSize from "@/lib/hooks/use-window-size";
 import { useEffect, useRef, useState, useCallback, useContext } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { LoadingContext } from "../shared/loading-context";
+import { useResizeDetector } from "react-resize-detector";
 
 // sky from https://codepen.io/sharnajh/pen/WNvppRy
 
 export default function Stars() {
     const [render, setRender] = useState(false);
     const router = useRouter();
-    const loading = useContext(LoadingContext);
-    const skyDiv = useRef<SVGSVGElement>(null);
-    const [path, setPath] = useState(router.pathname);
+
+    const skyDiv = useRef(null);
+
     const [layout, setLayout] = useState("w-full h-2/3 xl:w-2/3 h-full");
+
+    const onResize = useCallback(() => {
+        // if (log) {
+        //     console.log("resized! " + width);
+        // }
+        setRender(false);
+        setTimeout(() => setRender(true));
+    }, []);
+
+    const { width, height, ref } = useResizeDetector({
+        targetRef: skyDiv,
+        refreshMode: "debounce",
+        refreshRate: 1000,
+        onResize,
+    });
 
     const [num, setNum] = useState(25);
     let [vw, setVw] = useState(0);
     let [vh, setVh] = useState(0);
 
-    const skyVari: Variants = {
+    const skyVariants: Variants = {
         hidden: {
             opacity: 0,
             transition: {
@@ -30,8 +45,6 @@ export default function Stars() {
         visible: {
             opacity: 1,
             transition: {
-                delay: 1,
-
                 staggerChildren: 0.2,
             },
         },
@@ -70,9 +83,9 @@ export default function Stars() {
     const getRandomY = () => {
         return Math.floor(Math.random() * Math.floor(vh)).toString();
     };
-    const switchLayout = useCallback(() => {
-        setRender(false);
-        switch (path) {
+
+    useEffect(() => {
+        switch (router.pathname) {
             case "/":
                 setLayout("w-full h-2/3 xl:w-2/3 xl:h-full");
                 setNum(35);
@@ -82,7 +95,7 @@ export default function Stars() {
                 setNum(60);
                 break;
             case "/crew":
-                setLayout("h-1/4 w-full bottom-0");
+                setLayout("h-1/4 w-full mb-0 mt-auto");
                 setNum(25);
                 break;
             case "/technology":
@@ -90,33 +103,27 @@ export default function Stars() {
                 setNum(60);
                 break;
         }
-        setVw(skyDiv?.current ? skyDiv?.current.clientWidth : 0);
-        setVh(skyDiv?.current ? skyDiv?.current.clientHeight : 0);
-
-        setRender(true);
-    }, [path, skyDiv]);
+    }, [router.pathname]);
 
     useEffect(() => {
-        if (!loading) {
-            setPath(router.pathname);
-
-            switchLayout();
-        }
-    }, [router.pathname, switchLayout, loading]);
+        setVw(width ? width : 0);
+        setVh(height ? height : 0);
+        console.log(`rendering: vw:${vw} vh:${vh}`);
+    }, [width, height, vw, vh]);
 
     return (
         <>
-            <AnimatePresence mode="wait" initial={false}>
-                {!loading && render && (
-                    <div className="absolute inset-0">
+            {render && (
+                <div className="relative inset-0 flex h-full w-full ">
+                    <AnimatePresence>
                         <motion.svg
                             ref={skyDiv}
                             id="sky"
                             initial="hidden"
                             animate="visible"
-                            variants={skyVari}
+                            variants={skyVariants}
                             exit={{ opacity: 0 }}
-                            className={`${layout} pointer-events-none  relative m-0 overflow-hidden p-0`}
+                            className={`${layout} pointer-events-none relative  flex-1 overflow-hidden `}
                         >
                             {[...Array(num)].map((x, y) => (
                                 <motion.circle
@@ -133,14 +140,17 @@ export default function Stars() {
                                         80 + Math.floor(Math.random() * 20)
                                     }%)`}
                                     key={`star-${y}`}
-                                    className=""
+                                    className="pointer-events-none"
                                     variants={stars}
                                 />
                             ))}
+                            <span className="text-5xl text-white">
+                                Width:{width} | Height:{height}
+                            </span>
                         </motion.svg>
-                    </div>
-                )}
-            </AnimatePresence>
+                    </AnimatePresence>
+                </div>
+            )}
         </>
     );
 }

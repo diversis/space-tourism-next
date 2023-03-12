@@ -17,7 +17,7 @@ import {
 
 export async function getStaticProps() {
     const data = require("@/lib/data.json");
-    console.log(data);
+
     return {
         props: { data: [...data.destinations] }, // will be passed to the page component as props
     };
@@ -44,7 +44,9 @@ export default function Destination(
                         </span>
                         Pick your destination
                     </h5>
-                    <div className="relative flex h-[50vmin] w-full items-end justify-self-center  xl:h-full">
+                    {/* Column 1 */}
+                    <div className="grid  w-full place-items-center justify-center justify-self-center xl:h-auto  xl:items-end">
+                        {/* Image */}
                         <AnimatePresence>
                             {Array.isArray(data) &&
                                 data.map((item, key) => {
@@ -58,11 +60,11 @@ export default function Destination(
                                             }
                                             exit="hidden"
                                             key={`${item.name}-${key}-image`}
-                                            className="absolute inset-0 flex items-end justify-center"
+                                            className="flex w-full items-center justify-center [grid-area:1/1] xl:items-end"
                                         >
                                             <motion.div
                                                 variants={IMAGE_VARIANTS}
-                                                className="absolute left-auto right-auto top-0 bottom-0 grid aspect-square w-min  place-items-center justify-center overflow-hidden xl:place-items-end"
+                                                className=" grid w-2/3  place-items-center justify-center  overflow-hidden md:w-1/2 xl:w-full xl:place-items-end"
                                             >
                                                 <Image
                                                     width={445}
@@ -79,8 +81,9 @@ export default function Destination(
                         </AnimatePresence>
                     </div>
 
-                    {/* className="grid h-full w-full grid-rows-[1fr_min-content_1fr] gap-y-4 text-center xl:text-left" */}
-                    <div className=" flex w-full flex-col items-end justify-end gap-y-4 text-center xl:h-full xl:gap-y-8 xl:text-left">
+                    {/* Column 2 */}
+                    <div className="px-[clamp(4px,2vw + 4px,16px)] flex w-full flex-col items-end justify-end gap-y-4 text-center md:px-12 xl:gap-y-8  xl:px-0 xl:text-left">
+                        {/* Tabs */}
                         <motion.nav
                             className="w-full tracking-widest text-accent"
                             initial="hidden"
@@ -120,7 +123,8 @@ export default function Destination(
                                     })}
                             </ul>
                         </motion.nav>
-                        <article className="relative h-full min-h-[25rem] w-full md:min-h-[21.5rem] xl:max-h-[28rem] xl:min-h-[27.5rem]">
+                        {/* Description */}
+                        <article className="grid   w-full">
                             <AnimatePresence>
                                 {Array.isArray(data) &&
                                     data.map((item, key) => {
@@ -134,7 +138,7 @@ export default function Destination(
                                                 }
                                                 exit="hidden"
                                                 key={`${item.name}-${key}-li`}
-                                                className="absolute inset-0 flex flex-col gap-y-8"
+                                                className="top-full flex  w-full flex-col gap-y-8 [grid-area:1/1]"
                                                 variants={SECTION_VARIANTS}
                                             >
                                                 <motion.h2
@@ -146,7 +150,7 @@ export default function Destination(
                                                     {item.name.toUpperCase()}
                                                 </motion.h2>
                                                 <motion.p
-                                                    className="text-shadow w-full text-accent xl:h-[9em]"
+                                                    className="text-shadow w-full pb-[1.75em] text-accent"
                                                     variants={ARTICLE_VARIANTS}
                                                 >
                                                     <Balancer ratio={0.5}>
@@ -157,27 +161,27 @@ export default function Destination(
                                                     variants={HR_VARIANTS}
                                                     className="h-0 border-solid border-accent/25"
                                                 />
-                                                <motion.p
+                                                <motion.div
                                                     variants={ARTICLE_VARIANTS}
                                                     className="flex w-full flex-col text-secondary md:flex-row"
                                                 >
-                                                    <p className=" flex w-full  flex-col gap-y-2 xl:items-start xl:justify-end ">
+                                                    <h6 className=" flex w-full  flex-col gap-y-2 xl:items-start xl:justify-end ">
                                                         <span className="h7 uppercase">
                                                             Avg. distance
                                                         </span>
-                                                        <h6 className="align-bottom uppercase">
+                                                        <span className="align-bottom uppercase">
                                                             {item.distance}
-                                                        </h6>
-                                                    </p>
-                                                    <p className="flex w-full flex-col gap-y-2 xl:items-start xl:justify-end">
+                                                        </span>
+                                                    </h6>
+                                                    <h6 className="flex w-full flex-col gap-y-2 xl:items-start xl:justify-end">
                                                         <span className="h7 uppercase ">
                                                             Est. travel time
                                                         </span>
-                                                        <h6 className="align-bottom uppercase">
+                                                        <span className="align-bottom uppercase">
                                                             {item.travel}
-                                                        </h6>
-                                                    </p>
-                                                </motion.p>
+                                                        </span>
+                                                    </h6>
+                                                </motion.div>
                                             </motion.section>
                                         );
                                     })}
