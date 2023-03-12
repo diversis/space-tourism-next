@@ -66,18 +66,7 @@ export default function Layout({
                     }
                 `}</style>
             </Head>
-            <AnimatePresence mode="sync">
-                {!loading && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 z-0"
-                    >
-                        <Stars />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <AnimatePresence>{!loading && <Stars />}</AnimatePresence>
             <Navbar />
 
             <main className="z-10 overflow-x-hidden [grid-area:2/1]">

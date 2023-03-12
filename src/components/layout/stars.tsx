@@ -10,28 +10,22 @@ export default function Stars() {
     const [render, setRender] = useState(false);
     const router = useRouter();
 
-    const skyDiv = useRef(null);
+    // const skyDiv = useRef(null);
 
     const [layout, setLayout] = useState("w-full h-2/3 xl:w-2/3 h-full");
 
     const onResize = useCallback(() => {
-        // if (log) {
-        //     console.log("resized! " + width);
-        // }
         setRender(false);
         setTimeout(() => setRender(true));
     }, []);
 
     const { width, height, ref } = useResizeDetector({
-        targetRef: skyDiv,
         refreshMode: "debounce",
         refreshRate: 1000,
         onResize,
     });
 
     const [num, setNum] = useState(25);
-    let [vw, setVw] = useState(0);
-    let [vh, setVh] = useState(0);
 
     const skyVariants: Variants = {
         hidden: {
@@ -47,6 +41,14 @@ export default function Stars() {
             transition: {
                 staggerChildren: 0.2,
             },
+        },
+    };
+    const skyWrapVariants: Variants = {
+        hidden: {
+            opacity: 0,
+        },
+        visible: {
+            opacity: 1,
         },
     };
 
@@ -78,10 +80,14 @@ export default function Stars() {
         return Math.random() * 2 + 0.6;
     };
     const getRandomX = () => {
-        return Math.floor(Math.random() * Math.floor(vw)).toString();
+        return Math.floor(
+            Math.random() * Math.floor(width ? width : 0),
+        ).toString();
     };
     const getRandomY = () => {
-        return Math.floor(Math.random() * Math.floor(vh)).toString();
+        return Math.floor(
+            Math.random() * Math.floor(height ? height : 0),
+        ).toString();
     };
 
     useEffect(() => {
@@ -105,52 +111,57 @@ export default function Stars() {
         }
     }, [router.pathname]);
 
-    useEffect(() => {
-        setVw(width ? width : 0);
-        setVh(height ? height : 0);
-        console.log(`rendering: vw:${vw} vh:${vh}`);
-    }, [width, height, vw, vh]);
-
     return (
         <>
-            {render && (
+            <motion.div
+                id="skyWrap"
+                initial="hidden"
+                animate="visible"
+                variants={skyWrapVariants}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 z-0"
+            >
                 <div className="relative inset-0 flex h-full w-full ">
-                    <AnimatePresence>
-                        <motion.svg
-                            ref={skyDiv}
-                            id="sky"
-                            initial="hidden"
-                            animate="visible"
-                            variants={skyVariants}
-                            exit={{ opacity: 0 }}
-                            className={`${layout} pointer-events-none relative  flex-1 overflow-hidden `}
-                        >
-                            {[...Array(num)].map((x, y) => (
-                                <motion.circle
-                                    cx={getRandomX()}
-                                    cy={getRandomY()}
-                                    r={randomRadius()}
-                                    stroke="none"
-                                    strokeWidth="0"
-                                    fill={`hsl(${Math.floor(
-                                        Math.random() * 250,
-                                    )},${
-                                        20 + Math.floor(Math.random() * 80)
-                                    }%,${
-                                        80 + Math.floor(Math.random() * 20)
-                                    }%)`}
-                                    key={`star-${y}`}
-                                    className="pointer-events-none"
-                                    variants={stars}
-                                />
-                            ))}
-                            <span className="text-5xl text-white">
-                                Width:{width} | Height:{height}
-                            </span>
-                        </motion.svg>
-                    </AnimatePresence>
+                    <div
+                        className={`${layout} relative inset-0 flex h-full w-full `}
+                    >
+                        {
+                            <motion.svg
+                                ref={ref}
+                                id="sky"
+                                initial="hidden"
+                                animate="visible"
+                                variants={skyVariants}
+                                exit={{ opacity: 0 }}
+                                className={` pointer-events-none relative  flex-1 overflow-hidden `}
+                            >
+                                {render &&
+                                    [...Array(num)].map((x, y) => (
+                                        <motion.circle
+                                            cx={getRandomX()}
+                                            cy={getRandomY()}
+                                            r={randomRadius()}
+                                            stroke="none"
+                                            strokeWidth="0"
+                                            fill={`hsl(${Math.floor(
+                                                Math.random() * 250,
+                                            )},${
+                                                20 +
+                                                Math.floor(Math.random() * 80)
+                                            }%,${
+                                                80 +
+                                                Math.floor(Math.random() * 20)
+                                            }%)`}
+                                            key={`star-${y}`}
+                                            className="pointer-events-none"
+                                            variants={stars}
+                                        />
+                                    ))}
+                            </motion.svg>
+                        }
+                    </div>
                 </div>
-            )}
+            </motion.div>
         </>
     );
 }

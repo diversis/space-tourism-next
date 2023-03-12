@@ -11,11 +11,11 @@ import { APP_WRAPPER_VARIANTS } from "@/lib/constants";
 
 export default function App({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        console.log(
-            `\n--------------------\n RLY LOADIN? ${loading} \n--------------------\n`,
-        );
-    }, [loading]);
+    // useEffect(() => {
+    //     console.log(
+    //         `\n--------------------\n RLY LOADIN? ${loading} \n--------------------\n`,
+    //     );
+    // }, [loading]);
 
     useEffect(() => {
         // Used for page transition
@@ -59,12 +59,6 @@ export default function App({ Component, pageProps }: AppProps) {
                                         duration: 0.1,
                                         type: "tween",
                                         ease: "linear",
-                                    }}
-                                    onAnimationStart={(definition) => {
-                                        console.log(
-                                            "Started animating",
-                                            definition,
-                                        );
                                     }}
                                     variants={APP_WRAPPER_VARIANTS}
                                     className="grid h-full w-full grid-rows-[1fr] place-items-center"
