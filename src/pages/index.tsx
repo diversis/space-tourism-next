@@ -1,6 +1,3 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import Explore from "@/lib/buttons/explore";

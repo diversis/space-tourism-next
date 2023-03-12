@@ -143,7 +143,7 @@ export default function Explore() {
         <h4 className=" h-min w-min">
             <AnimatePresence>
                 <MotionConfig reducedMotion="user">
-                    <Link href="/" legacyBehavior passHref>
+                    <Link href="/destination" legacyBehavior passHref>
                         <motion.a
                             initial="rest"
                             whileHover="hover"

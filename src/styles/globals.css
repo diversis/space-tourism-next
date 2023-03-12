@@ -57,6 +57,7 @@
         min-height: 100vh;
         display: grid;
         grid-template-rows: min-content 1fr;
+        position: relative;
     }
 
     /* Add pointer cursors to interactive elements  */
@@ -140,7 +141,7 @@
         @apply font-bellefair text-3xl leading-tight md:text-5xl  xl:text-6xl;
     }
     h3 {
-        @apply font-bellefair text-[1.5rem] md:text-3xl  xl:text-3xl;
+        @apply font-bellefair text-[1.5rem] md:text-3xl  xl:text-4xl;
     }
     h4 {
         @apply font-bellefair text-[1.25rem] md:text-2xl;
@@ -151,7 +152,7 @@
     h6 {
         @apply font-bellefair text-xl;
     }
-    h7 {
+    .h7 {
         @apply font-condensed text-xs tracking-wide;
     }
     nav {
