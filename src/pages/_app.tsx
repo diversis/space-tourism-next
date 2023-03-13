@@ -41,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Layout loading={loading}>
                     <MotionConfig reducedMotion="user">
                         <AnimatePresence
-                            mode="wait"
+                            mode="popLayout"
                             initial={false}
                             onExitComplete={() => window.scrollTo(0, 0)}
                         >

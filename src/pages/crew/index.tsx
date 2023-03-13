@@ -42,7 +42,7 @@ export default function Crew(
 
                 <div
                     className="container grid  h-full grid-cols-1 items-center justify-between gap-y-4 
-                overflow-y-clip py-12 px-6 [grid-template-areas:'title''image''tabs''description'] 
+                overflow-y-clip px-6 pb-12 [grid-template-areas:'title''image''tabs''description'] 
                 md:pb-0 md:[grid-template-areas:'title''description''tabs''image'] 
                 xl:grid xl:grid-cols-2 xl:grid-rows-[min-content_1fr_min-content_8rem] 
                 xl:place-items-end xl:justify-items-start xl:gap-x-12 xl:py-0 
@@ -61,7 +61,7 @@ export default function Crew(
                     {/* Column 1 */}
                     <div className="relative grid h-full  w-full items-end justify-self-center [grid-area:image] ">
                         {/* Image */}
-                        <AnimatePresence mode="sync">
+                        <AnimatePresence>
                             {Array.isArray(data) &&
                                 data.map((item: CrewMember, key) => {
                                     const role = item.role.toLowerCase();
@@ -95,12 +95,12 @@ export default function Crew(
                                         >
                                             <motion.div
                                                 variants={IMAGE_VARIANTS}
-                                                className="relative grid  h-full w-2/3 place-items-center  justify-center overflow-hidden xl:w-full xl:place-items-end"
+                                                className="relative flex h-full w-2/3 items-end  justify-center overflow-hidden border-b  border-secondary/25 xl:w-full xl:place-items-end xl:border-transparent"
                                             >
                                                 <Image
                                                     alt={`${"f"}`}
                                                     src={src}
-                                                    className=" bottom-0  h-full xl:w-full"
+                                                    className=" bottom-0 "
                                                     priority
                                                 ></Image>
                                             </motion.div>
@@ -116,14 +116,13 @@ export default function Crew(
                         animate="visible"
                         variants={TABS_VARIANTS}
                     >
-                        <ul className="mx-auto flex flex-row justify-center gap-x-[2em] xl:justify-start">
+                        <ul className="mx-auto flex flex-row justify-center gap-x-[1em] xl:justify-start">
                             {Array.isArray(data) &&
                                 data.map((item, key) => {
                                     return (
                                         <li key={`${item.name}-${key}-li`}>
                                             <GlowWrap
                                                 rx="999px"
-                                                offset="8px"
                                                 length="12px"
                                                 travel="-10"
                                                 data-glow-animation="grow"
@@ -134,16 +133,20 @@ export default function Crew(
                                                 <a
                                                     title={item.name}
                                                     href={`#${item.name}`}
-                                                    className={`${
-                                                        item.name ===
-                                                        data[tab].name
-                                                            ? "bg-secondary"
-                                                            : "bg-secondary/25"
-                                                    } block h-4  w-4 rounded-full   transition-colors [&:is(:hover,:focus)]:bg-accent/50`}
+                                                    className={`group/tab grid h-7 w-7 place-items-center rounded-full  `}
                                                     onClick={() => {
                                                         setTab(key);
                                                     }}
-                                                ></a>
+                                                >
+                                                    <span
+                                                        className={`${
+                                                            item.name ===
+                                                            data[tab].name
+                                                                ? "bg-secondary"
+                                                                : "bg-secondary/25"
+                                                        } block h-4 w-4 rounded-full   transition-colors group-hover/tab:bg-accent/50 group-focus/tab:bg-accent/50`}
+                                                    ></span>
+                                                </a>
                                             </GlowWrap>
                                         </li>
                                     );

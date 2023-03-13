@@ -72,10 +72,10 @@ export default function Home() {
         <>
             <div className="flex h-full w-full flex-row">
                 <div className="flex-1 xl:basis-[10.375rem]"></div>
-                <div className="container flex h-full flex-col items-center justify-between gap-y-4 overflow-y-clip py-12 px-6  xl:grid xl:grid-cols-2 xl:grid-rows-[1fr_8rem] xl:place-items-end xl:justify-items-start xl:py-0 ">
+                <div className="container flex h-full flex-col items-center justify-between gap-y-4 overflow-y-clip px-6 pb-12  xl:grid xl:grid-cols-2 xl:grid-rows-[1fr_8rem] xl:place-items-end xl:justify-items-start xl:py-0 ">
                     <AnimatePresence mode="sync">
                         <motion.article
-                            className="flex flex-col gap-y-4 text-center xl:text-left"
+                            className="flex flex-col gap-y-4 pt-12 text-center xl:text-left"
                             initial="hidden"
                             animate="visible"
                         >

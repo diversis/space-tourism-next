@@ -34,7 +34,7 @@ export default function Destination(
             <div className="flex h-full w-full flex-row">
                 <div className="flex-1 xl:basis-[10.375rem]"></div>
 
-                <div className="container flex h-full flex-col items-center justify-between gap-y-4 overflow-y-clip py-12 px-6  xl:grid xl:grid-cols-2 xl:grid-rows-[min-content_1fr_8rem] xl:place-items-end xl:justify-items-start xl:gap-x-12 xl:py-0 ">
+                <div className="container flex h-full flex-col items-center justify-between gap-y-8 overflow-y-clip px-6 pb-12  xl:grid xl:grid-cols-2 xl:grid-rows-[min-content_1fr_8rem] xl:place-items-end xl:justify-items-start xl:gap-x-12 xl:py-0 ">
                     <h5 className="col-span-2 w-full  text-white ">
                         <span
                             aria-hidden
@@ -45,7 +45,7 @@ export default function Destination(
                         Pick your destination
                     </h5>
                     {/* Column 1 */}
-                    <div className="grid  w-full place-items-center justify-center justify-self-center xl:h-auto  xl:items-end">
+                    <div className="grid  w-full place-items-center justify-center justify-self-center   xl:items-end">
                         {/* Image */}
                         <AnimatePresence>
                             {Array.isArray(data) &&
@@ -60,18 +60,18 @@ export default function Destination(
                                             }
                                             exit="hidden"
                                             key={`${item.name}-${key}-image`}
-                                            className="flex w-full items-center justify-center [grid-area:1/1] xl:items-end"
+                                            className="flex h-full w-full justify-center  [grid-area:1/1]"
                                         >
                                             <motion.div
                                                 variants={IMAGE_VARIANTS}
-                                                className=" grid w-2/3  place-items-center justify-center  overflow-hidden md:w-1/2 xl:w-full xl:place-items-end"
+                                                className="relative flex h-full w-2/3 items-end  justify-center overflow-hidden xl:w-full xl:place-items-end"
                                             >
                                                 <Image
                                                     width={445}
                                                     height={445}
                                                     alt={`${"f"}`}
                                                     src={`${item.images?.webp}`}
-                                                    className="aspect-square "
+                                                    className=" "
                                                     priority
                                                 ></Image>
                                             </motion.div>
@@ -163,7 +163,7 @@ export default function Destination(
                                                 />
                                                 <motion.div
                                                     variants={ARTICLE_VARIANTS}
-                                                    className="flex w-full flex-col text-secondary md:flex-row"
+                                                    className="flex w-full flex-col gap-y-4 text-secondary md:flex-row"
                                                 >
                                                     <h6 className=" flex w-full  flex-col gap-y-2 xl:items-start xl:justify-end ">
                                                         <span className="h7 uppercase">

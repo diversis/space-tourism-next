@@ -58,6 +58,19 @@
         display: grid;
         grid-template-rows: min-content 1fr;
         position: relative;
+        row-gap: 1rem;
+    }
+
+    @media screen and (min-width: 768px) {
+        body > #__next {
+            row-gap: 1.5rem;
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+        body > #__next {
+            row-gap: 4.75rem;
+        }
     }
 
     /* Add pointer cursors to interactive elements  */
@@ -138,7 +151,7 @@
     }
 
     h2 {
-        @apply font-bellefair text-3xl leading-tight md:text-5xl  xl:text-6xl;
+        @apply font-bellefair text-4xl leading-tight md:text-5xl  xl:text-6xl;
     }
     h3 {
         @apply font-bellefair text-[1.5rem] md:text-3xl  xl:text-4xl;
