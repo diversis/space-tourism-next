@@ -105,8 +105,10 @@ export default function Destination(
                                             travel="-6"
                                             speed="1600"
                                         >
-                                            <a
+                                            <motion.a
                                                 href={`#${item.name}`}
+                                                initial={{ scale: 1 }}
+                                                whileTap={{ scale: 0.9 }}
                                                 className={`${
                                                     item.name === data[tab].name
                                                         ? "border-secondary"
@@ -119,7 +121,7 @@ export default function Destination(
                                                 <span>
                                                     {item.name.toUpperCase()}
                                                 </span>
-                                            </a>
+                                            </motion.a>
                                         </GlowWrap>
                                     </li>
                                 );

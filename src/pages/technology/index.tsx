@@ -108,7 +108,7 @@ export default function Technology(
                                             <Image
                                                 alt={`${"f"}`}
                                                 src={src.v}
-                                                className=" bottom-0 hidden xl:block"
+                                                className=" bottom-0 hidden xl:block "
                                                 priority
                                             ></Image>
                                         </motion.div>
@@ -128,12 +128,12 @@ export default function Technology(
 
                 {/* Tabs */}
                 <motion.nav
-                    className="flex h-full w-full items-center tracking-widest text-accent [grid-area:tabs] xl:items-start xl:justify-center"
+                    className="flex h-full w-full items-center justify-center tracking-widest text-accent [grid-area:tabs] xl:justify-start "
                     initial="hidden"
                     animate="visible"
                     variants={TABS_VARIANTS}
                 >
-                    <ul className="mx-auto flex flex-row justify-center gap-y-8 gap-x-[1rem] self-center justify-self-start xl:flex-col xl:justify-start">
+                    <ul className="flex flex-row  gap-y-8 gap-x-[1rem]  xl:flex-col ">
                         {Array.isArray(data) &&
                             data.map((item, key) => {
                                 return (

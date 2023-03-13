@@ -125,10 +125,12 @@ export default function Crew(
                                             <span className="sr-only">
                                                 {item.name}
                                             </span>
-                                            <a
+                                            <motion.a
                                                 title={item.name}
                                                 href={`#${item.name}`}
                                                 className={`group/tab grid h-7 w-7 place-items-center rounded-full  `}
+                                                initial={{ scale: 1 }}
+                                                whileTap={{ scale: 0.9 }}
                                                 onClick={() => {
                                                     setTab(key);
                                                 }}
@@ -141,7 +143,7 @@ export default function Crew(
                                                             : "bg-secondary/25"
                                                     } block h-4 w-4 rounded-full   transition-colors group-hover/tab:bg-accent/50 group-focus/tab:bg-accent/50`}
                                                 ></span>
-                                            </a>
+                                            </motion.a>
                                         </GlowWrap>
                                     </li>
                                 );
