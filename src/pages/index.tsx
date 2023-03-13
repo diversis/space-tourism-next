@@ -71,7 +71,7 @@ export default function Home() {
     return (
         <>
             <div className="flex h-full w-full flex-row">
-                <div className="flex-1 xl:basis-[10.375rem]"></div>
+                <div className="flex-1 xl:basis-[10.4375rem]"></div>
                 <div className="container flex h-full flex-col items-center justify-between gap-y-4 overflow-y-clip px-6 pb-12  xl:grid xl:grid-cols-2 xl:grid-rows-[1fr_8rem] xl:place-items-end xl:justify-items-start xl:py-0 ">
                     <AnimatePresence mode="sync">
                         <motion.article
@@ -127,7 +127,7 @@ export default function Home() {
                         <Explore />
                     </div>
                 </div>
-                <div className="flex-1 xl:basis-[10.375rem]"></div>
+                <div className="flex-1 xl:basis-[10.4375rem]"></div>
             </div>
         </>
     );

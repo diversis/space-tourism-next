@@ -41,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Layout loading={loading}>
                     <MotionConfig reducedMotion="user">
                         <AnimatePresence
-                            mode="popLayout"
+                            mode="wait"
                             initial={false}
                             onExitComplete={() => window.scrollTo(0, 0)}
                         >
@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }: AppProps) {
                                         ease: "linear",
                                     }}
                                     variants={APP_WRAPPER_VARIANTS}
-                                    className="grid h-full w-full grid-rows-[1fr] place-items-center"
+                                    className="grid h-full w-full grid-rows-[1fr] place-items-center "
                                 >
                                     <Loader />
                                 </motion.div>

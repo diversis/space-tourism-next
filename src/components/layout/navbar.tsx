@@ -15,7 +15,7 @@ export default function Navbar() {
     return (
         <>
             <header className="relative flex h-[6rem] w-full flex-row items-center  justify-between gap-x-16 [grid-area:1/1] xl:mt-10">
-                <Logo className="ml-12 grid  flex-none basis-12 place-items-center " />
+                <Logo className="ml-6 grid flex-none basis-12 place-items-center md:ml-[2.4375rem] xl:ml-[3.4375rem]" />
                 <div className="relative m-0 hidden  h-0  flex-grow !border-t-transparent p-0 after:absolute after:-right-24 after:left-0 after:top-0 after:z-10  after:m-0 after:block after:h-0 after:w-[calc(100%+6rem)] after:border-b after:border-solid after:border-secondary/25 xl:block xl:after:content-['']" />
                 {/* Desktop and Tablet navigation menu */}
                 <nav

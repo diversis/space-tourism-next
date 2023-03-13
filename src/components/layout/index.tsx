@@ -69,7 +69,7 @@ export default function Layout({
             <AnimatePresence>{!loading && <Stars />}</AnimatePresence>
             <Navbar />
 
-            <main className="z-10 overflow-x-hidden [grid-area:2/1]">
+            <main className="z-10 overflow-y-auto overflow-x-hidden [grid-area:2/1] ">
                 {children}
             </main>
         </>

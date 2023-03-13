@@ -7,6 +7,11 @@ module.exports = {
     },
     theme: {
         extend: {
+            screens: {
+                xs: { raw: "(min-width: 320px)" },
+                over9000: { raw: "(min-width: 1920px)" },
+                // => @media (min-width: 1920px) { ... }
+            },
             colors: {
                 primary: "hsl(230, 35%, 7%)",
                 accent: "hsl(231, 77%, 90%)",

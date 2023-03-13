@@ -5,7 +5,7 @@ import { useResizeDetector } from "react-resize-detector";
 export default function GlowWrap({
     children,
     rx = "0px",
-    speed = "1200ms",
+    speed = "1200",
     offset = "0px",
     travel = "-3.5",
     blur = "5px",
@@ -59,7 +59,7 @@ export default function GlowWrap({
                 className={styles["glow-effect"] + " " + className}
                 style={
                     {
-                        ["--animation-speed"]: speed,
+                        ["--animation-speed"]: speed+"ms",
                         ["--glow-offset"]: offset,
                         ["--glow-blur-size"]: blur,
                         ["--glow-line-thickness"]: thickness,

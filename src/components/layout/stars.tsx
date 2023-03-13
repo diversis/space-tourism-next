@@ -115,48 +115,47 @@ export default function Stars() {
     }, [router.pathname]);
 
     return (
-        <>
-            <motion.div
-                id="skyWrap"
-                initial="hidden"
-                animate="visible"
-                variants={skyWrapVariants}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 z-0"
-            >
-                <div className="relative inset-0 flex h-full w-full ">
-                    <div ref={ref} className={`${layout}   `}>
-                        {render && (
-                            <motion.svg
-                                id="sky"
-                                variants={skyVariants}
-                                exit={{ opacity: 0 }}
-                                className={` pointer-events-none relative  h-full w-full overflow-hidden `}
-                            >
-                                {[...Array(num)].map((x, y) => (
-                                    <motion.circle
-                                        cx={getRandomX()}
-                                        cy={getRandomY()}
-                                        r={randomRadius()}
-                                        stroke="none"
-                                        strokeWidth="0"
-                                        fill={`hsl(${Math.floor(
-                                            Math.random() * 250,
-                                        )},${
-                                            20 + Math.floor(Math.random() * 80)
-                                        }%,${
-                                            80 + Math.floor(Math.random() * 20)
-                                        }%)`}
-                                        key={`star-${y}`}
-                                        className="pointer-events-none"
-                                        variants={stars}
-                                    />
-                                ))}
-                            </motion.svg>
-                        )}
-                    </div>
+        <motion.div
+            key="skyWrap"
+            id="skyWrap"
+            initial="hidden"
+            animate="visible"
+            variants={skyWrapVariants}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-0"
+        >
+            <div className="relative inset-0 flex h-full w-full ">
+                <div ref={ref} className={`${layout}   `}>
+                    {render && (
+                        <motion.svg
+                            key="skyWrap"
+                            id="sky"
+                            variants={skyVariants}
+                            className={` pointer-events-none relative  h-full w-full overflow-hidden `}
+                        >
+                            {[...Array(num)].map((x, y) => (
+                                <motion.circle
+                                    cx={getRandomX()}
+                                    cy={getRandomY()}
+                                    r={randomRadius()}
+                                    stroke="none"
+                                    strokeWidth="0"
+                                    fill={`hsl(${Math.floor(
+                                        Math.random() * 250,
+                                    )},${
+                                        20 + Math.floor(Math.random() * 80)
+                                    }%,${
+                                        80 + Math.floor(Math.random() * 20)
+                                    }%)`}
+                                    key={`star-${y}`}
+                                    className="pointer-events-none"
+                                    variants={stars}
+                                />
+                            ))}
+                        </motion.svg>
+                    )}
                 </div>
-            </motion.div>
-        </>
+            </div>
+        </motion.div>
     );
 }
