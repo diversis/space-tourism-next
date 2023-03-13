@@ -70,6 +70,21 @@ export const ARTICLE_VARIANTS: Variants = {
         },
     },
 };
+export const ARTICLE_FALL_VARIANTS: Variants = {
+    hidden: {
+        y: "-20rem",
+        opacity: 0,
+    },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring",
+            mass: 0.2,
+            stiffness: 250,
+        },
+    },
+};
 export const HR_VARIANTS: Variants = {
     hidden: {
         scale: 0,
@@ -109,6 +124,7 @@ export const SECTION_LEFT_VARIANTS: Variants = {
         x: "0",
         opacity: 1,
         transition: {
+            when: "beforeChildren",
             type: "spring",
             stiffness: 150,
             mass: 0.3,
@@ -130,6 +146,27 @@ export const TAB_TITLE_VARIANTS: Variants = {
 
         transition: {
             duration: 0.7,
+            type: "tween",
+            ease: "backOut",
+        },
+    },
+};
+export const TAB_TITLE_LEFT_VARIANTS: Variants = {
+    hidden: {
+        x: "-20rem",
+        opacity: 0,
+        transition: {
+            duration: 0.3,
+            type: "tween",
+            ease: "easeOut",
+        },
+    },
+    visible: {
+        x: 0,
+        opacity: 1,
+
+        transition: {
+            duration: 0.3,
             type: "tween",
             ease: "backOut",
         },

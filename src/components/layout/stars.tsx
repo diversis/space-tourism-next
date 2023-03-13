@@ -89,6 +89,9 @@ export default function Stars() {
             Math.random() * Math.floor(height ? height : 0),
         ).toString();
     };
+    useEffect(() => {
+        setRender(true);
+    }, []);
 
     useEffect(() => {
         switch (router.pathname) {
@@ -122,43 +125,35 @@ export default function Stars() {
                 className="absolute inset-0 z-0"
             >
                 <div className="relative inset-0 flex h-full w-full ">
-                    <div
-                        className={`${layout} relative inset-0 flex h-full w-full `}
-                    >
-                        {
+                    <div ref={ref} className={`${layout}   `}>
+                        {render && (
                             <motion.svg
-                                ref={ref}
                                 id="sky"
-                                initial="hidden"
-                                animate="visible"
                                 variants={skyVariants}
                                 exit={{ opacity: 0 }}
-                                className={` pointer-events-none relative  flex-1 overflow-hidden `}
+                                className={` pointer-events-none relative  h-full w-full overflow-hidden `}
                             >
-                                {render &&
-                                    [...Array(num)].map((x, y) => (
-                                        <motion.circle
-                                            cx={getRandomX()}
-                                            cy={getRandomY()}
-                                            r={randomRadius()}
-                                            stroke="none"
-                                            strokeWidth="0"
-                                            fill={`hsl(${Math.floor(
-                                                Math.random() * 250,
-                                            )},${
-                                                20 +
-                                                Math.floor(Math.random() * 80)
-                                            }%,${
-                                                80 +
-                                                Math.floor(Math.random() * 20)
-                                            }%)`}
-                                            key={`star-${y}`}
-                                            className="pointer-events-none"
-                                            variants={stars}
-                                        />
-                                    ))}
+                                {[...Array(num)].map((x, y) => (
+                                    <motion.circle
+                                        cx={getRandomX()}
+                                        cy={getRandomY()}
+                                        r={randomRadius()}
+                                        stroke="none"
+                                        strokeWidth="0"
+                                        fill={`hsl(${Math.floor(
+                                            Math.random() * 250,
+                                        )},${
+                                            20 + Math.floor(Math.random() * 80)
+                                        }%,${
+                                            80 + Math.floor(Math.random() * 20)
+                                        }%)`}
+                                        key={`star-${y}`}
+                                        className="pointer-events-none"
+                                        variants={stars}
+                                    />
+                                ))}
                             </motion.svg>
-                        }
+                        )}
                     </div>
                 </div>
             </motion.div>

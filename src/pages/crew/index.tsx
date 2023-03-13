@@ -1,19 +1,25 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import Balancer from "react-wrap-balancer";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { InferGetStaticPropsType } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GlowWrap from "@/components/shared/glowwrap";
 import {
     ARTICLE_VARIANTS,
-    HR_VARIANTS,
     IMAGE_VARIANTS,
     SECTION_LEFT_VARIANTS,
     TABS_VARIANTS,
-    TAB_TITLE_VARIANTS,
+    ARTICLE_FALL_VARIANTS,
+    TAB_TITLE_LEFT_VARIANTS,
 } from "@/lib/constants";
+import { CrewMember } from "@/lib/types";
+
+import commanderImage from "@public/image/crew/image-douglas-hurley.png";
+import missionSpecialistImage from "@public/image/crew/image-mark-shuttleworth.png";
+import pilotImage from "@public/image/crew/image-victor-glover.png";
+import flightEngineerImage from "@public/image/crew/image-anousheh-ansari.png";
 
 export async function getStaticProps() {
     const data = require("@/lib/data.json");
@@ -26,7 +32,7 @@ export async function getStaticProps() {
 export default function Crew(
     props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-    const data = props.data;
+    const data: CrewMember[] = props.data;
     const [tab, setTab] = useState(0);
 
     return (
@@ -34,7 +40,14 @@ export default function Crew(
             <div className="flex h-full w-full flex-row">
                 <div className="flex-1 xl:basis-[10.375rem]"></div>
 
-                <div className="container grid  h-full grid-cols-1 items-center justify-between gap-y-4 overflow-y-clip py-12 px-6 [grid-template-areas:'title''image''tabs''description'] xl:grid xl:grid-cols-2 xl:grid-rows-[min-content_1fr_min-content_8rem] xl:place-items-end xl:justify-items-start xl:gap-x-12 xl:py-0 xl:[grid-template-areas:'title_title''description_image''tabs_image''._image'] ">
+                <div
+                    className="container grid  h-full grid-cols-1 items-center justify-between gap-y-4 
+                overflow-y-clip py-12 px-6 [grid-template-areas:'title''image''tabs''description'] 
+                md:pb-0 md:[grid-template-areas:'title''description''tabs''image'] 
+                xl:grid xl:grid-cols-2 xl:grid-rows-[min-content_1fr_min-content_8rem] 
+                xl:place-items-end xl:justify-items-start xl:gap-x-12 xl:py-0 
+                xl:[grid-template-areas:'title_title''description_image''tabs_image''._image'] "
+                >
                     {/* Page Title */}
                     <h5 className="col-span-2 w-full  text-white [grid-area:title]">
                         <span
@@ -46,11 +59,28 @@ export default function Crew(
                         Meet your crew
                     </h5>
                     {/* Column 1 */}
-                    <div className="relative flex h-[50vmin] w-full items-end justify-self-center [grid-area:image]  xl:h-full">
+                    <div className="relative grid h-full  w-full items-end justify-self-center [grid-area:image] ">
                         {/* Image */}
                         <AnimatePresence mode="sync">
                             {Array.isArray(data) &&
-                                data.map((item, key) => {
+                                data.map((item: CrewMember, key) => {
+                                    const role = item.role.toLowerCase();
+
+                                    let src: StaticImageData = commanderImage;
+                                    switch (role) {
+                                        case "commander":
+                                            src = commanderImage;
+                                            break;
+                                        case "mission specialist":
+                                            src = missionSpecialistImage;
+                                            break;
+                                        case "pilot":
+                                            src = pilotImage;
+                                            break;
+                                        case "flight engineer":
+                                            src = flightEngineerImage;
+                                            break;
+                                    }
                                     return (
                                         <motion.div
                                             initial="hidden"
@@ -61,18 +91,16 @@ export default function Crew(
                                             }
                                             exit="hidden"
                                             key={`${item.name}-${key}-image`}
-                                            className="absolute inset-0 flex items-end justify-center"
+                                            className="flex h-full w-full justify-center  [grid-area:1/1]"
                                         >
                                             <motion.div
                                                 variants={IMAGE_VARIANTS}
-                                                className="absolute inset-0  grid aspect-auto w-full  place-items-center justify-center overflow-hidden xl:place-items-end"
+                                                className="relative grid  h-full w-2/3 place-items-center  justify-center overflow-hidden xl:w-full xl:place-items-end"
                                             >
                                                 <Image
-                                                    width={445}
-                                                    height={445}
                                                     alt={`${"f"}`}
-                                                    src={`${item.images?.webp}`}
-                                                    className="w-full"
+                                                    src={src}
+                                                    className=" bottom-0  h-full xl:w-full"
                                                     priority
                                                 ></Image>
                                             </motion.div>
@@ -94,10 +122,11 @@ export default function Crew(
                                     return (
                                         <li key={`${item.name}-${key}-li`}>
                                             <GlowWrap
-                                                rx="8px"
+                                                rx="999px"
                                                 offset="8px"
                                                 length="12px"
                                                 travel="-10"
+                                                data-glow-animation="grow"
                                             >
                                                 <span className="sr-only">
                                                     {item.name}
@@ -108,9 +137,9 @@ export default function Crew(
                                                     className={`${
                                                         item.name ===
                                                         data[tab].name
-                                                            ? "border-secondary"
-                                                            : "border-transparent"
-                                                    } flex items-center border-b-[3px] py-2 tracking-wider [&:is(:hover,:focus)]:border-secondary/50`}
+                                                            ? "bg-secondary"
+                                                            : "bg-secondary/25"
+                                                    } block h-4  w-4 rounded-full   transition-colors [&:is(:hover,:focus)]:bg-accent/50`}
                                                     onClick={() => {
                                                         setTab(key);
                                                     }}
@@ -122,9 +151,9 @@ export default function Crew(
                         </ul>
                     </motion.nav>
                     {/* column 2 */}
-                    <div className="flex w-full flex-col gap-y-4 text-center [grid-area:description] xl:h-full xl:items-end xl:justify-end xl:gap-y-8 xl:text-left">
+                    <div className="flex w-full flex-col gap-y-4 text-center [grid-area:description] xl:h-full xl:items-end xl:justify-center xl:gap-y-8 xl:text-left">
                         {/* Description */}
-                        <article className="relative h-full min-h-[25rem] w-full outline outline-green-500 md:min-h-[17rem] xl:max-h-[20.25rem] ">
+                        <article className="relative grid w-full ">
                             <AnimatePresence>
                                 {Array.isArray(data) &&
                                     data.map((item, key) => {
@@ -138,11 +167,13 @@ export default function Crew(
                                                 }
                                                 exit="hidden"
                                                 key={`${item.name}-${key}-li`}
-                                                className="absolute inset-0 flex flex-col items-center justify-center gap-y-4 xl:items-start "
+                                                className="flex flex-col items-center justify-center gap-y-4 [grid-area:1/1] xl:items-start "
                                                 variants={SECTION_LEFT_VARIANTS}
                                             >
                                                 <motion.h4
-                                                    variants={ARTICLE_VARIANTS}
+                                                    variants={
+                                                        ARTICLE_FALL_VARIANTS
+                                                    }
                                                     className="flex w-full flex-col text-secondary/50 md:flex-row"
                                                 >
                                                     <span className="flex w-full items-center justify-center  uppercase xl:items-start xl:justify-start">
@@ -151,14 +182,14 @@ export default function Crew(
                                                 </motion.h4>
                                                 <motion.h3
                                                     variants={
-                                                        TAB_TITLE_VARIANTS
+                                                        TAB_TITLE_LEFT_VARIANTS
                                                     }
                                                     className="spicy relative mb-[0.15em] w-max overflow-x-visible bg-conic bg-[size:800%+800%] bg-no-repeat leading-tight"
                                                 >
                                                     {item.name.toUpperCase()}
                                                 </motion.h3>
                                                 <motion.p
-                                                    className="text-shadow mt-4 h-min w-full max-w-[46ch] text-accent outline outline-cyan-500 xl:max-h-[10em]"
+                                                    className="text-shadow mt-4 w-full max-w-[46ch] text-accent "
                                                     variants={ARTICLE_VARIANTS}
                                                 >
                                                     <Balancer ratio={0.5}>

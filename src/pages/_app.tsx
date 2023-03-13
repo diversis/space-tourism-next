@@ -68,18 +68,15 @@ export default function App({ Component, pageProps }: AppProps) {
                             ) : (
                                 <motion.div
                                     key="main-wrap"
-                                    initial={{ x: "100%", opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
                                     exit={{
-                                        x: "100%",
+                                        scale: 0,
                                         opacity: 0,
                                         transition: { duration: 0.3 },
                                     }}
                                     transition={{
                                         duration: 0.3,
-                                        type: "spring",
-                                        mass: 0.2,
-                                        stiffness: 250,
                                     }}
                                     className="grid h-full w-full grid-rows-[1fr] justify-items-center"
                                 >
