@@ -8,6 +8,7 @@ import Loader from "@/components/shared/Loader.svg";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { LoadingContext } from "@/components/shared/loading-context";
 import { APP_WRAPPER_VARIANTS } from "@/lib/constants";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false);
@@ -85,6 +86,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     </MotionConfig>
                 </Layout>
             </LoadingContext.Provider>
+            <Analytics />
         </RWBProvider>
     );
 }
