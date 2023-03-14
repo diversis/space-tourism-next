@@ -66,9 +66,18 @@ export default function Layout({
                 `}</style>
             </Head>
             <AnimatePresence>{!loading && <Stars />}</AnimatePresence>
+            <a
+                href="#main"
+                className="absolute z-[9000] mx-auto -translate-y-full bg-white py-2 px-4 transition-transform focus:translate-y-0"
+            >
+                Skip to content
+            </a>
             <Navbar />
 
-            <main className="z-10 w-full overflow-y-auto overflow-x-hidden [grid-area:2/1] ">
+            <main
+                id="main"
+                className="z-10 w-full overflow-y-auto overflow-x-hidden [grid-area:2/1] "
+            >
                 {children}
             </main>
         </>

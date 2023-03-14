@@ -41,7 +41,10 @@ export default function Destination(
                 xl:grid-rows-[min-content_1fr_min-content_3.75rem] xl:items-start
                 xl:[grid-template-areas:'._title_title_title_.''._image_._tabs_.''._image_._description_.''._._._._.']"
             >
-                <h5 className=" text-center text-white  [grid-area:title] md:text-left ">
+                <h5
+                    tabIndex={0}
+                    className=" text-center text-white  [grid-area:title] md:text-left "
+                >
                     <span aria-hidden className="mr-4 font-bold text-white/25">
                         01
                     </span>
@@ -146,12 +149,14 @@ export default function Destination(
                                         variants={SECTION_VARIANTS}
                                     >
                                         <motion.h2
+                                            tabIndex={0}
                                             variants={TAB_TITLE_VARIANTS}
                                             className="spicy relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
                                         >
                                             {item.name.toUpperCase()}
                                         </motion.h2>
                                         <motion.p
+                                            tabIndex={0}
                                             className="text-shadow w-full max-w-[56ch] text-accent  xl:max-w-[46ch]"
                                             variants={ARTICLE_VARIANTS}
                                         >
@@ -169,18 +174,30 @@ export default function Destination(
                                             className=" flex w-full flex-col gap-y-4 text-secondary md:flex-row"
                                         >
                                             <h6 className=" flex w-full  flex-col gap-y-2 xl:items-start xl:justify-end ">
-                                                <span className="h7 uppercase">
+                                                <span
+                                                    tabIndex={0}
+                                                    className="h7 uppercase"
+                                                >
                                                     Avg. distance
                                                 </span>
-                                                <span className="align-bottom uppercase">
+                                                <span
+                                                    tabIndex={0}
+                                                    className="align-bottom uppercase"
+                                                >
                                                     {item.distance}
                                                 </span>
                                             </h6>
                                             <h6 className="flex w-full flex-col gap-y-2 xl:items-start xl:justify-end">
-                                                <span className="h7 uppercase ">
+                                                <span
+                                                    tabIndex={0}
+                                                    className="h7 uppercase "
+                                                >
                                                     Est. travel time
                                                 </span>
-                                                <span className="align-bottom uppercase">
+                                                <span
+                                                    tabIndex={0}
+                                                    className="align-bottom uppercase"
+                                                >
                                                     {item.travel}
                                                 </span>
                                             </h6>

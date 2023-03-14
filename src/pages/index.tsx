@@ -104,12 +104,14 @@ export default function Home() {
                                 })}
                         </motion.h5>
                         <motion.h1
+                            tabIndex={0}
                             variants={title}
                             className="spicy linear-mask relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
                         >
                             {h1Text}
                         </motion.h1>
                         <motion.p
+                            tabIndex={0}
                             className="text-shadow max-w-[46ch] text-accent"
                             variants={article}
                         >

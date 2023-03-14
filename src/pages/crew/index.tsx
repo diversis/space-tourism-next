@@ -48,7 +48,10 @@ export default function Crew(
             >
                 <div className="flex w-full flex-1 [grid-area:.]"></div>
                 {/* Page Title */}
-                <h5 className="col-span-2 w-full text-center text-white  [grid-area:title] md:text-left">
+                <h5
+                    tabIndex={0}
+                    className="col-span-2 w-full text-center text-white  [grid-area:title] md:text-left"
+                >
                     <span aria-hidden className="mr-4 font-bold text-white/25">
                         02
                     </span>
@@ -172,6 +175,7 @@ export default function Crew(
                                             variants={SECTION_LEFT_VARIANTS}
                                         >
                                             <motion.h4
+                                                tabIndex={0}
                                                 variants={ARTICLE_FALL_VARIANTS}
                                                 className="flex w-full flex-col text-secondary/50 md:flex-row"
                                             >
@@ -180,6 +184,7 @@ export default function Crew(
                                                 </span>
                                             </motion.h4>
                                             <motion.h3
+                                                tabIndex={0}
                                                 variants={
                                                     TAB_TITLE_LEFT_VARIANTS
                                                 }
@@ -188,6 +193,7 @@ export default function Crew(
                                                 {item.name.toUpperCase()}
                                             </motion.h3>
                                             <motion.p
+                                                tabIndex={0}
                                                 className="text-shadow mt-4 w-full max-w-[56ch] text-accent xl:max-w-[46ch] "
                                                 variants={ARTICLE_VARIANTS}
                                             >
