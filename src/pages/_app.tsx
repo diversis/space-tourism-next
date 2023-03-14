@@ -51,7 +51,6 @@ export default function App({ Component, pageProps }: AppProps) {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{
-                                        scale: 0,
                                         opacity: 0,
                                         transition: { duration: 0.1 },
                                     }}
@@ -68,10 +67,9 @@ export default function App({ Component, pageProps }: AppProps) {
                             ) : (
                                 <motion.div
                                     key="main-wrap"
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     exit={{
-                                        scale: 0,
                                         opacity: 0,
                                         transition: { duration: 0.3 },
                                     }}

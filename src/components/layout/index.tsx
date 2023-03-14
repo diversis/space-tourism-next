@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Stars from "./stars";
 import { AnimatePresence, motion } from "framer-motion";
+import Meta from "./meta";
 
 export default function Layout({
     children,
@@ -17,11 +18,10 @@ export default function Layout({
     const router = useRouter();
     let path = router.pathname.toLowerCase();
     if (path === "/") path = "/home";
-    useEffect(() => {
-        document.body.classList.add("h-full");
-    }, []);
+
     return (
         <>
+        <Meta/>
             <Head>
                 <meta
                     name="description"
@@ -38,7 +38,7 @@ export default function Layout({
                     }`}
                 </title>
 
-                <link rel="icon" href="/favicon-32x32.png" />
+                
                 <style>{`
                     body {
                         background-image: url(/image/${path.replace(
