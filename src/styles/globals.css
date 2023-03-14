@@ -125,7 +125,7 @@
 }
 
 @layer components {
-    /* nav */
+    /* nav button */
     .mobile-nav-toggle {
         overflow: hidden;
         stroke-linecap: round;

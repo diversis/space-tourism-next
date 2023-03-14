@@ -76,7 +76,7 @@ export default function Navbar() {
                                 ease: "backIn",
                             }}
                             exit={{ x: "100%" }}
-                            className="fixed right-0 top-0 z-[1000] h-full bg-secondary/5 backdrop-blur-sm md:hidden"
+                            className="fixed right-0 top-0 z-[1000] h-full bg-primary/25 backdrop-blur-lg md:hidden"
                         >
                             <ul className="mt-24 flex h-full w-full flex-col md:hidden md:gap-y-12">
                                 {NAV_LINKS.map((item, id) => {
