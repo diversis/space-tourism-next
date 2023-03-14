@@ -20,9 +20,9 @@ export default function Navbar() {
                 {/* Desktop and Tablet navigation menu */}
                 <nav
                     aria-label="main navigation"
-                    className="hidden h-full overflow-hidden bg-secondary/5 px-32 backdrop-blur-sm md:block "
+                    className="hidden h-full overflow-hidden bg-secondary/5 backdrop-blur-sm md:block md:px-12 xl:px-32 "
                 >
-                    <ul className="hidden h-full  md:flex md:flex-row md:gap-x-12">
+                    <ul className="hidden h-full  md:flex md:flex-row md:gap-x-[2.25rem] xl:gap-x-12">
                         {NAV_LINKS.map((item, id) => {
                             return (
                                 <li

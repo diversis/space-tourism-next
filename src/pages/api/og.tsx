@@ -27,7 +27,7 @@ export default async function handler(req: NextRequest) {
             >
                 <img
                     src={new URL(
-                        "../../public/image/home/background-home-desktop.jpg",
+                        "../../../public/image/home/background-home-desktop.jpg",
                         import.meta.url,
                     ).toString()}
                     alt="Space tourism Home"

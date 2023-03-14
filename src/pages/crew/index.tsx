@@ -23,7 +23,7 @@ import flightEngineerImage from "@public/image/crew/image-anousheh-ansari.png";
 
 export async function getStaticProps() {
     const data = require("@/lib/data.json");
-    console.log(data);
+
     return {
         props: { data: [...data.crew] }, // will be passed to the page component as props
     };
@@ -38,16 +38,17 @@ export default function Crew(
     return (
         <>
             <div
-                className="grid w-full grid-cols-[minmax(1rem,auto)_1fr_minmax(1rem,auto)]  
-                gap-y-8
-               overflow-hidden [grid-template-areas:'._title_.''._image_.''._tabs_.''._description_.''._._.']
-               md:grid-cols-[2.4375rem_1fr_2.4375rem] 
-               xl:grid-cols-[minmax(10.4375rem,auto)_minmax(0,48rem)_minmax(0,48rem)_minmax(10.4375rem,auto)] 
-               xl:grid-rows-[min-content_1fr_min-content_8rem] xl:items-start
-               xl:[grid-template-areas:'._title_image_.''._description_image_.''._tabs_image_.''._._image_.']  "
+                className="grid h-full w-full grid-cols-[minmax(1.5rem,auto)_1fr_minmax(1.5rem,auto)]  grid-rows-[min-content_1fr_min-content_auto_1.6875rem] 
+               gap-y-8 overflow-hidden [grid-template-areas:'._title_.''._image_.''._tabs_.''._description_.''._._.']
+               md:grid-cols-[2.4375rem_1fr_2.4375rem] md:grid-rows-[min-content_auto_min-content_1fr] md:gap-y-[3.625rem]
+               md:[grid-template-areas:'._title_.''._description_.''._tabs_.''._image_.'] xl:w-fit
+               xl:grid-cols-[10.4375rem_minmax(29.5625rem,48rem)_minmax(29.5625rem,48rem)_10.4375rem] 
+               xl:grid-rows-[min-content_1fr_min-content_2.375rem] xl:items-start
+               xl:[grid-template-areas:'._title_image_.''._description_image_.''._tabs_image_.''._._image_.']"
             >
+                <div className="flex w-full flex-1 [grid-area:.]"></div>
                 {/* Page Title */}
-                <h5 className="col-span-2 w-full  text-white [grid-area:title]">
+                <h5 className="col-span-2 w-full text-center text-white  [grid-area:title] md:text-left">
                     <span aria-hidden className="mr-4 font-bold text-white/25">
                         02
                     </span>
@@ -93,7 +94,7 @@ export default function Crew(
                                             className="relative flex h-full w-2/3 items-end  justify-center overflow-hidden border-b  border-secondary/25 xl:w-full xl:place-items-end xl:border-transparent"
                                         >
                                             <Image
-                                                alt={`${"f"}`}
+                                                alt={`${item.name}`}
                                                 src={src}
                                                 className=" bottom-0 "
                                                 priority
@@ -151,7 +152,7 @@ export default function Crew(
                     </ul>
                 </motion.nav>
                 {/* column 2 */}
-                <div className="flex w-full flex-col gap-y-4 text-center [grid-area:description] xl:h-full xl:items-end xl:justify-center xl:gap-y-8 xl:text-left">
+                <div className="flex w-full flex-col text-center [grid-area:description] xl:h-full xl:items-end xl:justify-center xl:text-left">
                     {/* Description */}
                     <article className="relative grid w-full ">
                         <AnimatePresence>
@@ -167,7 +168,7 @@ export default function Crew(
                                             }
                                             exit="hidden"
                                             key={`${item.name}-${key}-li`}
-                                            className="flex flex-col items-center justify-center gap-y-4 [grid-area:1/1] xl:items-start "
+                                            className="flex flex-col items-center gap-y-4 [grid-area:1/1] xl:items-start xl:justify-start "
                                             variants={SECTION_LEFT_VARIANTS}
                                         >
                                             <motion.h4
@@ -187,7 +188,7 @@ export default function Crew(
                                                 {item.name.toUpperCase()}
                                             </motion.h3>
                                             <motion.p
-                                                className="text-shadow mt-4 w-full max-w-[46ch] text-accent "
+                                                className="text-shadow mt-4 w-full max-w-[56ch] text-accent xl:max-w-[46ch] "
                                                 variants={ARTICLE_VARIANTS}
                                             >
                                                 <Balancer ratio={0.5}>

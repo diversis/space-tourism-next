@@ -24,7 +24,7 @@ import spaceCapsuleV from "@public/image/technology/image-space-capsule-portrait
 
 export async function getStaticProps() {
     const data = require("@/lib/data.json");
-    console.log(data);
+
     return {
         props: { data: [...data.technology] }, // will be passed to the page component as props
     };
@@ -40,17 +40,23 @@ export default function Technology(
         <>
             <div
                 id="content"
-                className="grid w-full grid-cols-[minmax(1rem,auto)_1fr_minmax(1rem,auto)]  
-                gap-y-8
-               overflow-hidden [grid-template-areas:'._title_.''image_image_image''._tabs_.''._description_.''._._.']
-               md:grid-cols-[2.4375rem_1fr_2.4375rem] 
-               xl:grid-cols-[minmax(10.4375rem,auto)_minmax(0,10rem)_minmax(0,44rem)_minmax(0,44rem)_minmax(10.4375rem,auto)] 
-               xl:grid-rows-[min-content_1fr_8rem] xl:items-start
-               xl:[grid-template-areas:'._title_title_title_.''._tabs_description_image_image''._._._._.'] "
+                className=" grid h-full w-full  grid-cols-[1.5rem_1fr_1.5rem] gap-y-8 overflow-hidden 
+                [grid-template-areas:'._title_.''image_image_image''._tabs_.''._description_.''._._.'] 
+                md:grid-cols-[2.4375rem_1fr_2.4375rem] md:gap-y-[3.625rem] xl:w-fit 
+               xl:grid-cols-[10.4375rem_10rem_minmax(29.5625rem,43rem)_minmax(9.5625rem,43rem)_10.4375rem]
+               xl:grid-rows-[min-content_1fr_3rem] xl:items-start
+               xl:[grid-template-areas:'._title_title_title_.''._tabs_description_image_image''._._._._.'] 
+               "
             >
-                {/* Column 1 */}
-                <div className="relative grid h-full  w-full items-center justify-self-end [grid-area:image] ">
-                    {/* Image */}
+                {/* Page Title */}
+                <h5 className="w-full text-center  text-white [grid-area:title] md:text-left">
+                    <span aria-hidden className="mr-4 font-bold text-white/25">
+                        03
+                    </span>
+                    Space launch 101
+                </h5>
+                {/* Image */}
+                <div className="relative grid h-full w-full items-center  [grid-area:image] ">
                     <AnimatePresence>
                         {Array.isArray(data) &&
                             data.map((item: TechnologyType, key) => {
@@ -93,20 +99,20 @@ export default function Technology(
                                         }
                                         exit="hidden"
                                         key={`${item.name}-${key}-image`}
-                                        className="flex h-full w-full justify-center  [grid-area:1/1]"
+                                        className="flex w-full  [grid-area:1/1]"
                                     >
                                         <motion.div
                                             variants={IMAGE_VARIANTS}
-                                            className="relative flex h-full w-full items-end justify-center overflow-hidden xl:w-full  xl:place-items-end xl:items-center xl:justify-end"
+                                            className="relative flex  w-full items-end justify-center overflow-hidden    xl:justify-end"
                                         >
                                             <Image
-                                                alt={`${"f"}`}
+                                                alt={`${item.name}`}
                                                 src={src.h}
                                                 className=" bottom-0 w-full xl:hidden"
                                                 priority
                                             ></Image>
                                             <Image
-                                                alt={`${"f"}`}
+                                                alt={`${item.name}`}
                                                 src={src.v}
                                                 className=" bottom-0 hidden xl:block "
                                                 priority
@@ -117,14 +123,6 @@ export default function Technology(
                             })}
                     </AnimatePresence>
                 </div>
-
-                {/* Page Title */}
-                <h5 className="col-span-2 w-full  text-white [grid-area:title]">
-                    <span aria-hidden className="mr-4 font-bold text-white/25">
-                        03
-                    </span>
-                    Space launch 101
-                </h5>
 
                 {/* Tabs */}
                 <motion.nav
@@ -164,7 +162,7 @@ export default function Technology(
                                                         setTab(key);
                                                     }}
                                                 >
-                                                    <span className="leading-none tracking-normal">
+                                                    <span className="pt-1 leading-none tracking-normal">
                                                         {1 + +key}
                                                     </span>
                                                 </motion.a>
@@ -176,7 +174,7 @@ export default function Technology(
                     </ul>
                 </motion.nav>
                 {/* column 2 */}
-                <div className="flex w-full flex-col gap-y-4 text-center [grid-area:description] xl:h-full xl:items-end xl:justify-center xl:gap-y-8 xl:text-left">
+                <div className="flex w-full flex-col gap-y-2 text-center [grid-area:description] xl:h-full xl:items-end xl:justify-center xl:text-left">
                     {/* Description */}
                     <p className="flex w-full flex-col text-secondary md:flex-row">
                         <span className="flex w-full items-center justify-center  font-condensed text-base uppercase tracking-wider xl:items-start xl:justify-start">
@@ -197,7 +195,7 @@ export default function Technology(
                                             }
                                             exit="hidden"
                                             key={`${item.name}-${key}-li`}
-                                            className="flex flex-col items-center justify-center gap-y-4 [grid-area:1/1] xl:items-start "
+                                            className="flex flex-col items-center justify-start gap-y-4 [grid-area:1/1] xl:items-start "
                                             variants={SECTION_VARIANTS}
                                         >
                                             <motion.h3
@@ -207,7 +205,7 @@ export default function Technology(
                                                 {item.name.toUpperCase()}
                                             </motion.h3>
                                             <motion.p
-                                                className="text-shadow mt-4 w-full max-w-[46ch] text-accent "
+                                                className="text-shadow mt-4 w-full max-w-[56ch] text-accent xl:max-w-[46ch] "
                                                 variants={ARTICLE_VARIANTS}
                                             >
                                                 <Balancer ratio={0.5}>

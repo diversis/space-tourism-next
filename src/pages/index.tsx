@@ -70,21 +70,52 @@ export default function Home() {
     };
     return (
         <>
-            <div className="flex h-full w-full flex-row">
-                <div className="flex-1 xl:basis-[10.4375rem]"></div>
-                <div className="container flex h-full flex-col items-center justify-between gap-y-4 overflow-y-clip px-6 pb-12  xl:grid xl:grid-cols-2 xl:grid-rows-[1fr_8rem] xl:place-items-end xl:justify-items-start xl:py-0 ">
-                    <AnimatePresence mode="sync">
-                        <motion.article
-                            className="flex flex-col gap-y-4 pt-12 text-center xl:text-left"
-                            initial="hidden"
-                            animate="visible"
+            <div
+                className=" grid  h-full w-full grid-cols-[1rem_1fr_1rem] grid-rows-[1fr_1fr_1rem] gap-y-8
+                overflow-hidden [grid-template-areas:'._hero_.''._cta_.''._._.'] md:grid-cols-[2.4375rem_1fr_2.4375rem] 
+                md:grid-rows-[1fr_1fr_3.625rem] 
+                xl:w-fit
+                xl:grid-cols-[10.4375rem_minmax(0,48rem)_minmax(0,48rem)_10.4375rem] 
+                xl:grid-rows-[1fr_8rem] xl:items-start
+                xl:[grid-template-areas:'._hero_cta_.''._._._.']"
+            >
+                {/* Hero */}
+
+                <AnimatePresence mode="sync">
+                    <motion.article
+                        className="flex flex-col items-center justify-start gap-y-4 self-end pt-12 text-center [grid-area:hero] xl:items-start xl:text-left"
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <motion.h5
+                            className="tracking-widest text-accent"
+                            variants={sentence}
                         >
-                            <motion.h5
-                                className="tracking-widest text-accent"
-                                variants={sentence}
-                            >
-                                {h5Text &&
-                                    h5Text.split("").map((char, index) => {
+                            {h5Text &&
+                                h5Text.split("").map((char, index) => {
+                                    return (
+                                        <motion.span
+                                            key={char + "-" + index}
+                                            variants={letter}
+                                        >
+                                            {char}
+                                        </motion.span>
+                                    );
+                                })}
+                        </motion.h5>
+                        <motion.h1
+                            variants={title}
+                            className="spicy linear-mask relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
+                        >
+                            {h1Text}
+                        </motion.h1>
+                        <motion.p
+                            className="text-shadow max-w-[46ch] text-accent"
+                            variants={article}
+                        >
+                            <Balancer ratio={0.5}>
+                                {longText &&
+                                    longText.split("").map((char, index) => {
                                         return (
                                             <motion.span
                                                 key={char + "-" + index}
@@ -94,40 +125,14 @@ export default function Home() {
                                             </motion.span>
                                         );
                                     })}
-                            </motion.h5>
-                            <motion.h1
-                                variants={title}
-                                className="spicy linear-mask relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
-                            >
-                                {h1Text}
-                            </motion.h1>
-                            <motion.p
-                                className="text-shadow max-w-[46ch] text-accent"
-                                variants={article}
-                            >
-                                <Balancer ratio={0.5}>
-                                    {longText &&
-                                        longText
-                                            .split("")
-                                            .map((char, index) => {
-                                                return (
-                                                    <motion.span
-                                                        key={char + "-" + index}
-                                                        variants={letter}
-                                                    >
-                                                        {char}
-                                                    </motion.span>
-                                                );
-                                            })}
-                                </Balancer>
-                            </motion.p>
-                        </motion.article>
-                    </AnimatePresence>
-                    <div className="relative h-min w-min justify-self-end ">
-                        <Explore />
-                    </div>
+                            </Balancer>
+                        </motion.p>
+                    </motion.article>
+                </AnimatePresence>
+                {/* CTA */}
+                <div className="relative h-min w-min self-end justify-self-center [grid-area:cta] xl:justify-self-end">
+                    <Explore />
                 </div>
-                <div className="flex-1 xl:basis-[10.4375rem]"></div>
             </div>
         </>
     );

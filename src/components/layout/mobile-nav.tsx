@@ -13,7 +13,11 @@ export default function MobileNav({
 }) {
     return (
         <AnimatePresence>
-            <GlowWrap rx="25px" className="relative  h-8 w-8" offset="8px">
+            <GlowWrap
+                rx="25px"
+                className="fixed right-8 top-8 h-8 w-8"
+                offset="8px"
+            >
                 <motion.button
                     onClick={() => setShowMenu(!showMenu)}
                     onBlur={() => setShowMenu(false)}

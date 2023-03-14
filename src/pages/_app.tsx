@@ -76,7 +76,7 @@ export default function App({ Component, pageProps }: AppProps) {
                                     transition={{
                                         duration: 0.3,
                                     }}
-                                    className="grid h-full w-full grid-rows-[1fr] justify-items-center"
+                                    className="flex h-full w-full flex-col items-center"
                                 >
                                     <Component {...pageProps} />
                                 </motion.div>

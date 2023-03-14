@@ -96,7 +96,7 @@ export default function Stars() {
     useEffect(() => {
         switch (router.pathname) {
             case "/":
-                setLayout("w-full h-2/3 xl:w-2/3 xl:h-full");
+                setLayout("w-full h-2/3 md:h-1/2 xl:w-2/3 xl:h-full");
                 setNum(35);
                 break;
             case "/destination":

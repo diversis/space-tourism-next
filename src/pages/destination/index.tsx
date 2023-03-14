@@ -32,25 +32,24 @@ export default function Destination(
     return (
         <>
             <div
-                className="grid w-full grid-cols-[minmax(1rem,auto)_1fr_minmax(1rem,auto)]  
-                 gap-y-8
-                overflow-hidden [grid-template-areas:'._title_.''._image_.''._tabs_.''._description_.''._._.']
-                md:grid-cols-[2.4375rem_1fr_2.4375rem] 
-                xl:grid-cols-[minmax(10.4375rem,auto)_minmax(0,44rem)_minmax(0,8rem)_minmax(0,44rem)_minmax(10.4375rem,auto)] 
-                xl:grid-rows-[min-content_1fr_min-content_8rem] xl:items-start
-                xl:[grid-template-areas:'._title_title_title_.''._image_._tabs_.''._image_._description_.''._._._._.'] 
-                
-                "
+                className="grid h-full w-full grid-cols-[1rem_minmax(0,1fr)_1rem] 
+                grid-rows-[min-content_1fr_min-content_auto_1.625rem] gap-y-8 overflow-hidden
+                [grid-template-areas:'._title_.''._image_.''._tabs_.''._description_.''._._.'] 
+                md:grid-cols-[2.4375rem_minmax(0,1fr)_2.4375rem]
+                md:grid-rows-[min-content_1fr_min-content_auto_0.25rem] md:gap-y-[3.625rem] xl:w-fit 
+                xl:grid-cols-[10.4375rem_minmax(0,44rem)_minmax(0,8rem)_minmax(0,44rem)_10.4375rem] 
+                xl:grid-rows-[min-content_1fr_min-content_3.75rem] xl:items-start
+                xl:[grid-template-areas:'._title_title_title_.''._image_._tabs_.''._image_._description_.''._._._._.']"
             >
-                <h5 className="   place-self-start text-white [grid-area:title]">
+                <h5 className=" text-center text-white  [grid-area:title] md:text-left ">
                     <span aria-hidden className="mr-4 font-bold text-white/25">
                         01
                     </span>
                     Pick your destination
                 </h5>
                 {/* Column 1 */}
-                <div className="grid place-items-center justify-center place-self-end  justify-self-center [grid-area:image] xl:place-items-end   xl:items-end">
-                    {/* Image */}
+                {/* Image */}
+                <div className="grid w-full place-items-center justify-center place-self-end  justify-self-center [grid-area:image] xl:place-items-end   xl:items-end">
                     <AnimatePresence>
                         {Array.isArray(data) &&
                             data.map((item, key) => {
@@ -64,18 +63,18 @@ export default function Destination(
                                         }
                                         exit="hidden"
                                         key={`${item.name}-${key}-image`}
-                                        className="flex h-full w-full justify-center  [grid-area:1/1]"
+                                        className="flex  w-2/3 [grid-area:1/1]  xl:w-full"
                                     >
                                         <motion.div
                                             variants={IMAGE_VARIANTS}
-                                            className="relative flex h-full w-2/3 items-end  justify-center overflow-hidden xl:w-full xl:place-items-end"
+                                            className="relative flex   w-full  items-end justify-center overflow-hidden xl:place-items-end"
                                         >
                                             <Image
                                                 width={445}
                                                 height={445}
-                                                alt={`${"f"}`}
+                                                alt={`${item.name}`}
                                                 src={`${item.images?.webp}`}
-                                                className=" "
+                                                className="  "
                                                 priority
                                             ></Image>
                                         </motion.div>
@@ -129,7 +128,7 @@ export default function Destination(
                     </ul>
                 </motion.nav>
                 {/* Description */}
-                <article className="grid w-full place-self-end text-center [grid-area:description] xl:text-left">
+                <article className="grid w-full place-self-end text-center [grid-area:description] md:px-[3.625rem] xl:px-0 xl:text-left">
                     <AnimatePresence>
                         {Array.isArray(data) &&
                             data.map((item, key) => {
@@ -143,7 +142,7 @@ export default function Destination(
                                         }
                                         exit="hidden"
                                         key={`${item.name}-${key}-li`}
-                                        className="flex w-full flex-col justify-between gap-y-8 [grid-area:1/1]"
+                                        className="flex w-full flex-col items-center justify-start gap-y-8 [grid-area:1/1] xl:items-start xl:justify-between"
                                         variants={SECTION_VARIANTS}
                                     >
                                         <motion.h2
@@ -153,20 +152,21 @@ export default function Destination(
                                             {item.name.toUpperCase()}
                                         </motion.h2>
                                         <motion.p
-                                            className="text-shadow w-full pb-[1.75em] text-accent"
+                                            className="text-shadow w-full max-w-[56ch] text-accent  xl:max-w-[46ch]"
                                             variants={ARTICLE_VARIANTS}
                                         >
                                             <Balancer ratio={0.5}>
                                                 {item.description}
                                             </Balancer>
                                         </motion.p>
+
                                         <motion.hr
                                             variants={HR_VARIANTS}
-                                            className="h-0 border-solid border-accent/25"
+                                            className="h-0 w-full border-solid border-accent/25"
                                         />
                                         <motion.div
                                             variants={ARTICLE_VARIANTS}
-                                            className="flex w-full flex-col gap-y-4 text-secondary md:flex-row"
+                                            className=" flex w-full flex-col gap-y-4 text-secondary md:flex-row"
                                         >
                                             <h6 className=" flex w-full  flex-col gap-y-2 xl:items-start xl:justify-end ">
                                                 <span className="h7 uppercase">
