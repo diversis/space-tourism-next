@@ -55,7 +55,7 @@ export default function GlowWrap({
         <>
             <div
                 ref={ref}
-                className={"glow-effect" + " " + className}
+                className={"glow-effect " + className}
                 style={
                     {
                         ["--animation-speed"]: speed + "ms",
@@ -75,14 +75,14 @@ export default function GlowWrap({
                     <svg className="glow-container">
                         <rect
                             pathLength="100"
-                            className={"glow-blur" + " " + blurColor}
+                            className={"glow-blur " + blurColor}
                             rx={rx}
                             width="100"
                             height="100"
                         ></rect>
                         <rect
                             pathLength="100"
-                            className={"glow-line" + " " + lineColor}
+                            className={"glow-line " + lineColor}
                             rx={rx}
                             width="100"
                             height="100"
