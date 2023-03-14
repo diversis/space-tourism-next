@@ -46,6 +46,8 @@ module.exports = {
             },
             backgroundImage: {
                 conic: "conic-gradient(from 0turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(231deg, 77%, 90%,1) 30%,hsla(0deg, 0%, 100%,0.2) 35%,hsla(181, 100%, 51%, 1) 50%,hsla(181, 100%, 51%, 1) 70%,hsla(0deg, 0%, 100%,0.2) 75%,hsla(0deg, 0%, 100%,1) 80%)",
+                "repeating-conic":
+                    "repeating-conic-gradient(from 0turn at 50% 50%,hsl(231, 77%, 90%) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
             },
             animation: {
                 "fade-in":

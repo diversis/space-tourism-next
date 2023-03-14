@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig, Variants, motion } from "framer-motion";
 import Link from "next/link";
-
-// sky from https://codepen.io/sharnajh/pen/WNvppRy
 
 export default function Explore() {
     const exploreMotionBorder: Variants = {
         rest: {
-            backgroundImage:
-                "repeating-conic-gradient(from 0turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
-            backgroundSize: "cover",
+            rotate: 0,
             scale: 1,
             opacity: 0,
             transition: {
@@ -20,14 +15,8 @@ export default function Explore() {
             },
         },
         hover: {
-            backgroundImage: [
-                "repeating-conic-gradient(from 0.1turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
-                "repeating-conic-gradient(from 0.5turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
-                "repeating-conic-gradient(from 0.65turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
-                "repeating-conic-gradient(from 0.8turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
-                "repeating-conic-gradient(from 1turn at 50% 50%,hsla(0deg, 0%, 100%,1) 0%,hsla(0deg, 0%, 100%,0.1) 10%,hsla(0deg, 0%, 100%,0) 20%)",
-            ],
-            scale: [1, 1.2, 1.4, 1.5],
+            rotate: [0, 180, 210, 288, 360],
+            scale: [1, 1.1, 1.2, 1.4, 1.5],
             opacity: 1,
             transition: {
                 duration: 0.5,
@@ -51,13 +40,13 @@ export default function Explore() {
         rest: {
             rotate: "0",
             transition: {
-                duration: 2,
+                duration: 1,
                 type: "tween",
                 ease: "easeIn",
             },
         },
         hover: {
-            rotate: "-360deg",
+            rotate: ["0deg", "-360deg"],
 
             transition: {
                 times: [0, 1],
@@ -158,7 +147,7 @@ export default function Explore() {
                             >
                                 <motion.span
                                     variants={exploreMotionBorder}
-                                    className="round-mask explore-border pointer-events-none relative -z-20 !block h-full w-full rounded-full "
+                                    className="round-mask explore-border pointer-events-none relative -z-20 !block h-full w-full rounded-full bg-repeating-conic bg-cover"
                                 ></motion.span>
                             </motion.em>
                             <motion.span
