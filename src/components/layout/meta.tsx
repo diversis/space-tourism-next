@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const DOMAIN = "https://url-shortening-api-nine.vercel.app/";
+const DOMAIN = "https://url-shortening-api-nine.vercel.app";
 
 export default function Meta({
     title = "Frontend Mentor | Space tourism",

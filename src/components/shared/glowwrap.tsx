@@ -59,7 +59,7 @@ export default function GlowWrap({
                 className={styles["glow-effect"] + " " + className}
                 style={
                     {
-                        ["--animation-speed"]: speed+"ms",
+                        ["--animation-speed"]: speed + "ms",
                         ["--glow-offset"]: offset,
                         ["--glow-blur-size"]: blur,
                         ["--glow-line-thickness"]: thickness,
