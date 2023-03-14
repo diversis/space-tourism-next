@@ -175,7 +175,11 @@ export default function Crew(
                                             variants={SECTION_LEFT_VARIANTS}
                                         >
                                             <motion.h4
-                                                tabIndex={0}
+                                                tabIndex={
+                                                    item.name === data[tab].name
+                                                        ? 0
+                                                        : -1
+                                                }
                                                 variants={ARTICLE_FALL_VARIANTS}
                                                 className="flex w-full flex-col text-secondary/50 md:flex-row"
                                             >
@@ -184,7 +188,11 @@ export default function Crew(
                                                 </span>
                                             </motion.h4>
                                             <motion.h3
-                                                tabIndex={0}
+                                                tabIndex={
+                                                    item.name === data[tab].name
+                                                        ? 0
+                                                        : -1
+                                                }
                                                 variants={
                                                     TAB_TITLE_LEFT_VARIANTS
                                                 }
@@ -193,7 +201,11 @@ export default function Crew(
                                                 {item.name.toUpperCase()}
                                             </motion.h3>
                                             <motion.p
-                                                tabIndex={0}
+                                                tabIndex={
+                                                    item.name === data[tab].name
+                                                        ? 0
+                                                        : -1
+                                                }
                                                 className="text-shadow mt-4 w-full max-w-[56ch] text-accent xl:max-w-[46ch] "
                                                 variants={ARTICLE_VARIANTS}
                                             >

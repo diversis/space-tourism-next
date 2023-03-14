@@ -205,14 +205,22 @@ export default function Technology(
                                             variants={SECTION_VARIANTS}
                                         >
                                             <motion.h3
-                                                tabIndex={0}
+                                                tabIndex={
+                                                    item.name === data[tab].name
+                                                        ? 0
+                                                        : -1
+                                                }
                                                 variants={TAB_TITLE_VARIANTS}
                                                 className="spicy relative mb-[0.15em] w-max overflow-x-visible bg-conic bg-[size:800%+800%] bg-no-repeat leading-tight"
                                             >
                                                 {item.name.toUpperCase()}
                                             </motion.h3>
                                             <motion.p
-                                                tabIndex={0}
+                                                tabIndex={
+                                                    item.name === data[tab].name
+                                                        ? 0
+                                                        : -1
+                                                }
                                                 className="text-shadow mt-4 w-full max-w-[56ch] text-accent xl:max-w-[46ch] "
                                                 variants={ARTICLE_VARIANTS}
                                             >

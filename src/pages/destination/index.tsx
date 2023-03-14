@@ -149,14 +149,22 @@ export default function Destination(
                                         variants={SECTION_VARIANTS}
                                     >
                                         <motion.h2
-                                            tabIndex={0}
+                                            tabIndex={
+                                                item.name === data[tab].name
+                                                    ? 0
+                                                    : -1
+                                            }
                                             variants={TAB_TITLE_VARIANTS}
                                             className="spicy relative mb-[0.15em] w-full bg-conic bg-[size:800%+800%] bg-no-repeat"
                                         >
                                             {item.name.toUpperCase()}
                                         </motion.h2>
                                         <motion.p
-                                            tabIndex={0}
+                                            tabIndex={
+                                                item.name === data[tab].name
+                                                    ? 0
+                                                    : -1
+                                            }
                                             className="text-shadow w-full max-w-[56ch] text-accent  xl:max-w-[46ch]"
                                             variants={ARTICLE_VARIANTS}
                                         >
@@ -175,13 +183,23 @@ export default function Destination(
                                         >
                                             <h6 className=" flex w-full  flex-col gap-y-2 xl:items-start xl:justify-end ">
                                                 <span
-                                                    tabIndex={0}
+                                                    tabIndex={
+                                                        item.name ===
+                                                        data[tab].name
+                                                            ? 0
+                                                            : -1
+                                                    }
                                                     className="h7 uppercase"
                                                 >
                                                     Avg. distance
                                                 </span>
                                                 <span
-                                                    tabIndex={0}
+                                                    tabIndex={
+                                                        item.name ===
+                                                        data[tab].name
+                                                            ? 0
+                                                            : -1
+                                                    }
                                                     className="align-bottom uppercase"
                                                 >
                                                     {item.distance}
@@ -189,13 +207,23 @@ export default function Destination(
                                             </h6>
                                             <h6 className="flex w-full flex-col gap-y-2 xl:items-start xl:justify-end">
                                                 <span
-                                                    tabIndex={0}
+                                                    tabIndex={
+                                                        item.name ===
+                                                        data[tab].name
+                                                            ? 0
+                                                            : -1
+                                                    }
                                                     className="h7 uppercase "
                                                 >
                                                     Est. travel time
                                                 </span>
                                                 <span
-                                                    tabIndex={0}
+                                                    tabIndex={
+                                                        item.name ===
+                                                        data[tab].name
+                                                            ? 0
+                                                            : -1
+                                                    }
                                                     className="align-bottom uppercase"
                                                 >
                                                     {item.travel}
