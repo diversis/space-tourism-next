@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const DOMAIN = "https://url-shortening-api-nine.vercel.app";
+const DOMAIN = "https://space-tourism-next-beta.vercel.app";
 
 export default function Meta({
     title = "Frontend Mentor | Space tourism",

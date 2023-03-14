@@ -31,7 +31,7 @@ export async function getServerSideProps({
     req: NextApiRequest;
     res: NextApiResponse;
 }) {
-    const hostname = `localhost:3000`;
+    const hostname = `space-tourism-next-beta.vercel.app`;
 
     // Generate dynamic data for the sitemap
     //   const users = await prisma.user.findMany({
