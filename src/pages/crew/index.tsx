@@ -142,7 +142,7 @@ export default function Crew(
                                                         data[tab].name
                                                             ? "bg-secondary"
                                                             : "bg-secondary/25"
-                                                    } block h-4 w-4 rounded-full   transition-colors group-hover/tab:bg-accent/50 group-focus/tab:bg-accent/50`}
+                                                    } block h-4 w-4 rounded-full   transition-colors group-hover/tab:bg-secondary/50 group-focus/tab:bg-secondary/50`}
                                                 ></span>
                                             </motion.a>
                                         </GlowWrap>
