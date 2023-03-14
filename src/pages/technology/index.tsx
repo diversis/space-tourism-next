@@ -142,14 +142,14 @@ export default function Technology(
                                         <span className="sr-only">
                                             {item.name}
                                         </span>
-                                        <GlowWrap
-                                            rx="999px"
-                                            length="12px"
-                                            travel="-10"
-                                            data-glow-animation="grow"
-                                            className="grid w-min place-items-center"
-                                        >
-                                            <h4>
+                                        <h4>
+                                            <GlowWrap
+                                                rx="999px"
+                                                length="12px"
+                                                travel="-10"
+                                                data-glow-animation="grow"
+                                                className="grid w-min place-items-center"
+                                            >
                                                 <motion.a
                                                     title={item.name}
                                                     initial={{ scale: 1 }}
@@ -169,8 +169,8 @@ export default function Technology(
                                                         {1 + +key}
                                                     </span>
                                                 </motion.a>
-                                            </h4>
-                                        </GlowWrap>
+                                            </GlowWrap>
+                                        </h4>
                                     </li>
                                 );
                             })}
