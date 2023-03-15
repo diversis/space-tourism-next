@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import type { ReactNode } from "react";
 import Navbar from "./navbar";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
 import Stars from "./stars";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Meta from "./meta";
 
 export default function Layout({

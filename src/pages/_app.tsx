@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { Provider as RWBProvider } from "react-wrap-balancer";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import Loader from "@/components/shared/Loader.svg";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { LoadingContext } from "@/components/shared/loading-context";
@@ -11,6 +11,7 @@ import { APP_WRAPPER_VARIANTS } from "@/lib/constants";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }: AppProps) {
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -21,15 +22,15 @@ export default function App({ Component, pageProps }: AppProps) {
         const end = () => {
             setLoading(false);
         };
-        Router.events.on("routeChangeStart", start);
-        Router.events.on("routeChangeComplete", end);
-        Router.events.on("routeChangeError", end);
+        router.events.on("routeChangeStart", start);
+        router.events.on("routeChangeComplete", end);
+        router.events.on("routeChangeError", end);
         return () => {
-            Router.events.off("routeChangeStart", start);
-            Router.events.off("routeChangeComplete", end);
-            Router.events.off("routeChangeError", end);
+            router.events.off("routeChangeStart", start);
+            router.events.off("routeChangeComplete", end);
+            router.events.off("routeChangeError", end);
         };
-    }, []);
+    }, [router]);
 
     return (
         <RWBProvider>

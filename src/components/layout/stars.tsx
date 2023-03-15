@@ -1,10 +1,10 @@
 import useWindowSize from "@/lib/hooks/use-window-size";
-import { useEffect, useRef, useState, useCallback, useContext } from "react";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
+import { Variants, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useResizeDetector } from "react-resize-detector";
 
-// sky from https://codepen.io/sharnajh/pen/WNvppRy
+// sky adapted from https://codepen.io/sharnajh/pen/WNvppRy
 
 export default function Stars() {
     const [render, setRender] = useState(false);
