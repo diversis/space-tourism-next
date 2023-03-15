@@ -12,11 +12,6 @@ import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false);
-    // useEffect(() => {
-    //     console.log(
-    //         `\n--------------------\n RLY LOADIN? ${loading} \n--------------------\n`,
-    //     );
-    // }, [loading]);
 
     useEffect(() => {
         // Used for page transition

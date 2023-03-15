@@ -31,14 +31,10 @@ export default function GlowWrap({
     lineColor?: string;
     blurColor?: string;
     props?: any;
-    // log?: boolean;
 }) {
     let [render, setRender] = useState(false);
-    // const Tag = tagName as keyof JSX.IntrinsicElements;
+
     const onResize = useCallback(() => {
-        // if (log) {
-        //     console.log("resized! " + width);
-        // }
         setRender(false);
         setTimeout(() => setRender(true));
     }, []);

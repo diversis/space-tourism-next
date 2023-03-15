@@ -10,7 +10,7 @@ export default function Stars() {
     const [render, setRender] = useState(false);
     const router = useRouter();
 
-    // const skyDiv = useRef(null);
+    const { isDesktop, isTablet } = useWindowSize();
 
     const [layout, setLayout] = useState("w-full h-2/3 xl:w-2/3 h-full");
 
@@ -97,19 +97,19 @@ export default function Stars() {
         switch (router.pathname) {
             case "/":
                 setLayout("w-full h-2/3 md:h-1/2 xl:w-2/3 xl:h-full");
-                setNum(35);
+                setNum(7);
                 break;
             case "/destination":
                 setLayout("h-full w-full");
-                setNum(60);
+                setNum(12);
                 break;
             case "/crew":
                 setLayout("h-1/4 w-full mb-0 mt-auto");
-                setNum(25);
+                setNum(5);
                 break;
             case "/technology":
                 setLayout("h-full w-full");
-                setNum(60);
+                setNum(12);
                 break;
         }
     }, [router.pathname]);
@@ -133,7 +133,15 @@ export default function Stars() {
                             variants={skyVariants}
                             className={` pointer-events-none relative  h-full w-full overflow-hidden `}
                         >
-                            {[...Array(num)].map((x, y) => (
+                            {[
+                                ...Array(
+                                    isDesktop
+                                        ? 5 * num
+                                        : isTablet
+                                        ? 3 * num
+                                        : num,
+                                ),
+                            ].map((x, y) => (
                                 <motion.circle
                                     cx={getRandomX()}
                                     cy={getRandomY()}
