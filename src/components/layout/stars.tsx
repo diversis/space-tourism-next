@@ -1,5 +1,5 @@
 import useWindowSize from "@/lib/hooks/use-window-size";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { Variants, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useResizeDetector } from "react-resize-detector";
@@ -8,7 +8,10 @@ import { useResizeDetector } from "react-resize-detector";
 
 export default function Stars() {
     const [render, setRender] = useState(false);
+    const [vw, setVw] = useState(0);
+    const [vh, setVh] = useState(0);
     const router = useRouter();
+    const skyRef = useRef<HTMLDivElement>(null);
 
     const { isDesktop, isTablet } = useWindowSize();
 
@@ -16,13 +19,16 @@ export default function Stars() {
 
     const onResize = useCallback(() => {
         setRender(false);
+        setVw(skyRef.current?.clientWidth ? +skyRef.current?.clientWidth : 0);
+        setVh(skyRef.current?.clientHeight ? +skyRef.current?.clientHeight : 0);
         setTimeout(() => setRender(true));
     }, []);
 
-    const { width, height, ref } = useResizeDetector({
-        refreshMode: "debounce",
+    const resized = useResizeDetector({
+        refreshMode: "throttle",
         refreshRate: 1000,
         onResize,
+        targetRef: skyRef,
     });
 
     const [num, setNum] = useState(25);
@@ -80,14 +86,10 @@ export default function Stars() {
         return Math.random() * 2 + 0.6;
     };
     const getRandomX = () => {
-        return Math.floor(
-            Math.random() * Math.floor(width ? width : 0),
-        ).toString();
+        return Math.floor(Math.random() * Math.floor(vw ? vw : 0)).toString();
     };
     const getRandomY = () => {
-        return Math.floor(
-            Math.random() * Math.floor(height ? height : 0),
-        ).toString();
+        return Math.floor(Math.random() * Math.floor(vh ? vh : 0)).toString();
     };
     useEffect(() => {
         setRender(true);
@@ -125,7 +127,7 @@ export default function Stars() {
             className="absolute inset-0 z-0"
         >
             <div className="relative inset-0 flex h-full w-full ">
-                <div ref={ref} className={`${layout}   `}>
+                <div ref={skyRef} className={`${layout}   `}>
                     {render && (
                         <motion.svg
                             key="sky"
@@ -141,25 +143,27 @@ export default function Stars() {
                                         ? 3 * num
                                         : num,
                                 ),
-                            ].map((x, y) => (
-                                <motion.circle
-                                    cx={getRandomX()}
-                                    cy={getRandomY()}
-                                    r={randomRadius()}
-                                    stroke="none"
-                                    strokeWidth="0"
-                                    fill={`hsl(${Math.floor(
-                                        Math.random() * 250,
-                                    )},${
-                                        20 + Math.floor(Math.random() * 80)
-                                    }%,${
-                                        80 + Math.floor(Math.random() * 20)
-                                    }%)`}
-                                    key={`star-${y}`}
-                                    className="pointer-events-none"
-                                    variants={stars}
-                                />
-                            ))}
+                            ].map((any, i) => {
+                                return (
+                                    <motion.circle
+                                        cx={getRandomX()}
+                                        cy={getRandomY()}
+                                        r={randomRadius()}
+                                        stroke="none"
+                                        strokeWidth="0"
+                                        fill={`hsl(${Math.floor(
+                                            Math.random() * 250,
+                                        )},${
+                                            20 + Math.floor(Math.random() * 80)
+                                        }%,${
+                                            80 + Math.floor(Math.random() * 20)
+                                        }%)`}
+                                        key={`star-${i}`}
+                                        className="pointer-events-none"
+                                        variants={stars}
+                                    />
+                                );
+                            })}
                         </motion.svg>
                     )}
                 </div>
