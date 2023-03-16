@@ -147,7 +147,6 @@ export default function Technology(
                                                 rx="999px"
                                                 length="12px"
                                                 travel="-10"
-                                                data-glow-animation="grow"
                                                 className="grid w-min place-items-center"
                                             >
                                                 <motion.a
