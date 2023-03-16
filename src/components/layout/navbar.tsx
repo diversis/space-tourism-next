@@ -27,12 +27,12 @@ export default function Navbar() {
                             return (
                                 <li
                                     key={`nav-${item.name}`}
-                                    className={` grid h-full place-items-center  uppercase text-secondary transition-colors `}
+                                    className="grid h-full place-items-center  uppercase text-secondary transition-colors "
                                 >
                                     <GlowWrap
                                         rx="8px"
                                         offset="12px"
-                                        className="relative "
+                                        className=""
                                     >
                                         <Link
                                             href={item.url}
@@ -41,7 +41,7 @@ export default function Navbar() {
                                                 router.pathname == item.url
                                                     ? "border-secondary "
                                                     : "border-transparent "
-                                            } peer/link text-shadow z-30 border-b-[3px] pt-[38.5px] pb-[35.5px] text-center [&:is(:hover,:focus)]:border-secondary/50`}
+                                            } peer/link text-shadow z-30 self-center text-center [&:is(:hover,:focus)]:border-secondary/50`}
                                         >
                                             <span
                                                 aria-hidden="true"
@@ -54,6 +54,14 @@ export default function Navbar() {
                                             </span>
                                             {item.name}
                                         </Link>
+                                        <hr
+                                            className={`${
+                                                router &&
+                                                router.pathname == item.url
+                                                    ? "scale-100 border-secondary"
+                                                    : "scale-0 border-transparent"
+                                            } absolute -bottom-9 h-0 w-full self-end border-t-[3px] transition-all duration-300  peer-hover/link:scale-100 peer-hover/link:border-secondary/50 peer-focus/link:scale-100 peer-focus/link:border-secondary/50`}
+                                        ></hr>
                                     </GlowWrap>
                                 </li>
                             );

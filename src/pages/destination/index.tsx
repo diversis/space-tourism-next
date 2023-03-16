@@ -102,27 +102,31 @@ export default function Destination(
                                     <li key={`${item.name}-${key}-li`}>
                                         <GlowWrap
                                             rx="8px"
-                                            offset="8px"
                                             length="18px"
                                             travel="-6"
                                             speed="1600"
+                                            className="![--glow-offset:12px] md:![--glow-offset:20px]"
                                         >
                                             <motion.a
                                                 href={`#${item.name}`}
                                                 initial={{ scale: 1 }}
                                                 whileTap={{ scale: 0.9 }}
-                                                className={`${
-                                                    item.name === data[tab].name
-                                                        ? "border-secondary"
-                                                        : "border-transparent"
-                                                } flex items-center border-b-[3px] py-2 tracking-wider [&:is(:hover,:focus)]:border-secondary/50`}
+                                                className={` group/tab grid place-items-center tracking-wider`}
                                                 onClick={() => {
                                                     setTab(key);
                                                 }}
                                             >
-                                                <span>
+                                                <span className="[grid-area:1/1]">
                                                     {item.name.toUpperCase()}
                                                 </span>
+                                                <span
+                                                    className={`${
+                                                        item.name ===
+                                                        data[tab].name
+                                                            ? "scale-100 border-secondary"
+                                                            : "scale-0 border-transparent"
+                                                    } h-0 w-full translate-y-2 self-end border-t-[3px] transition-all duration-300 [grid-area:1/1] group-hover/tab:scale-100 group-hover/tab:border-secondary/50 group-focus/tab:scale-100 group-focus/tab:border-secondary/50 md:translate-y-3`}
+                                                />
                                             </motion.a>
                                         </GlowWrap>
                                     </li>
