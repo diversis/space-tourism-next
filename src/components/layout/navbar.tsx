@@ -95,12 +95,7 @@ export default function Navbar() {
                                         >
                                             <Link
                                                 href={item.url}
-                                                className={`${
-                                                    router &&
-                                                    router.pathname == item.url
-                                                        ? "border-secondary "
-                                                        : "border-transparent "
-                                                } text-shadow flex w-full flex-row items-center border-l-[3px] px-12 py-8 text-center   [&:is(:hover,:focus)]:border-secondary/50`}
+                                                className="peer/link text-shadow flex w-full flex-row items-center px-16 py-8 text-center [grid-area:1/1]"
                                             >
                                                 <span className="inline-block pr-2 font-bold tracking-wider md:hidden xl:inline-block">
                                                     {id.toLocaleString(
@@ -113,6 +108,14 @@ export default function Navbar() {
                                                 </span>
                                                 {item.name}
                                             </Link>
+                                            <span
+                                                className={`${
+                                                    router &&
+                                                    router.pathname == item.url
+                                                        ? "scale-100 border-secondary"
+                                                        : "scale-0 border-transparent"
+                                                } h-full w-0 justify-self-start border-l-[3px] transition-all duration-300 [grid-area:1/1] peer-hover/link:scale-100 peer-hover/link:border-secondary/50 peer-focus/link:scale-100 peer-focus/link:border-secondary/50`}
+                                            />
                                         </li>
                                     );
                                 })}
