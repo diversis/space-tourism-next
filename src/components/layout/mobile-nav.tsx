@@ -19,7 +19,9 @@ export default function MobileNav({
             >
                 <motion.button
                     onClick={() => setShowMenu(!showMenu)}
-                    onBlur={() => setShowMenu(false)}
+                    onBlur={() => {
+                        setShowMenu(false);
+                    }}
                     aria-expanded={showMenu}
                     className="mobile-nav-toggle stroke:white fixed right-8 top-8 flex h-8 w-8 items-center justify-center overflow-hidden rounded-full  transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
                 >

@@ -95,6 +95,14 @@ export default function Navbar() {
                                         >
                                             <Link
                                                 href={item.url}
+                                                onFocus={() => {
+                                                    setTimeout(() => {
+                                                        setShowMenu(true);
+                                                    });
+                                                }}
+                                                onBlur={() =>
+                                                    setShowMenu(false)
+                                                }
                                                 className="peer/link text-shadow flex w-full flex-row items-center px-16 py-8 text-center [grid-area:1/1]"
                                             >
                                                 <span className="inline-block pr-2 font-bold tracking-wider md:hidden xl:inline-block">
