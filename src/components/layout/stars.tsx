@@ -128,7 +128,7 @@ export default function Stars() {
                 <div ref={ref} className={`${layout}   `}>
                     {render && (
                         <motion.svg
-                            key="skyWrap"
+                            key="sky"
                             id="sky"
                             variants={skyVariants}
                             className={` pointer-events-none relative  h-full w-full overflow-hidden `}
