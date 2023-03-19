@@ -34,7 +34,9 @@ export default function Stars() {
     });
     useEffect(() => {
         setRender(false);
+        setTimeout(() => setRender(true), 1000);
     }, [skyRef.current?.clientWidth, skyRef.current?.clientWidth]);
+
     useEffect(() => {
         setRender(true);
     }, []);
