@@ -79,6 +79,28 @@ export default function Layout({
             >
                 {children}
             </main>
+            <div className="fixed right-0 bottom-0 z-[1000] mx-auto flex translate-y-full bg-white py-2 px-4 transition-transform focus-within:translate-y-0">
+                <p className="pb-4 text-sm">
+                    {" "}
+                    Challenge by
+                    <a
+                        href="https://www.frontendmentor.io?ref=challenge"
+                        target="_blank"
+                        className="mx-2 underline"
+                    >
+                        Frontend Mentor
+                    </a>
+                    Coded by
+                    <a
+                        href="https://github.com/diversis/space-tourism-next"
+                        target="_blank"
+                        className="ml-2 underline"
+                    >
+                        diversis
+                    </a>
+                    .
+                </p>
+            </div>
         </>
     );
 }
