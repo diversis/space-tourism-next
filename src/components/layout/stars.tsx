@@ -35,6 +35,9 @@ export default function Stars() {
     useEffect(() => {
         setRender(false);
     }, [skyRef.current?.clientWidth, skyRef.current?.clientWidth]);
+    useEffect(() => {
+        setRender(true);
+    }, []);
 
     const [num, setNum] = useState(25);
 
