@@ -7,29 +7,34 @@ import { useResizeDetector } from "react-resize-detector";
 // sky adapted from https://codepen.io/sharnajh/pen/WNvppRy
 
 export default function Stars() {
-    const [render, setRender] = useState(false);
-    const [vw, setVw] = useState(0);
-    const [vh, setVh] = useState(0);
+    const [render, setRender] = useState(true);
+
     const router = useRouter();
     const skyRef = useRef<HTMLDivElement>(null);
-
+    const [vw, setVw] = useState(
+        skyRef.current?.clientWidth ? +skyRef.current?.clientWidth : 0,
+    );
+    const [vh, setVh] = useState(
+        skyRef.current?.clientHeight ? +skyRef.current?.clientHeight : 0,
+    );
     const { isDesktop, isTablet } = useWindowSize();
 
     const [layout, setLayout] = useState("w-full h-2/3 xl:w-2/3 h-full");
 
     const onResize = useCallback(() => {
-        setRender(false);
         setVw(skyRef.current?.clientWidth ? +skyRef.current?.clientWidth : 0);
         setVh(skyRef.current?.clientHeight ? +skyRef.current?.clientHeight : 0);
         setTimeout(() => setRender(true));
     }, []);
-
-    const resized = useResizeDetector({
-        refreshMode: "throttle",
+    useResizeDetector({
+        refreshMode: "debounce",
         refreshRate: 1000,
         onResize,
         targetRef: skyRef,
     });
+    useEffect(() => {
+        setRender(false);
+    }, [skyRef.current?.clientWidth, skyRef.current?.clientWidth]);
 
     const [num, setNum] = useState(25);
 
@@ -91,10 +96,6 @@ export default function Stars() {
     const getRandomY = () => {
         return Math.floor(Math.random() * Math.floor(vh ? vh : 0)).toString();
     };
-    useEffect(() => {
-        setRender(true);
-    }, []);
-
     useEffect(() => {
         switch (router.pathname) {
             case "/":
