@@ -268,14 +268,14 @@ as described by Kevin Powell https://codepen.io/kevinpowell/pen/rNrdzdx
     .mask-1 {
         mask-size: 800%;
         -webkit-mask-size: 800%;
-        mask: linear-gradient(
+        mask-image: linear-gradient(
             to left,
             transparent 40%,
             black 50%,
             black 60%,
             transparent 80%
         );
-        -webkit-mask: linear-gradient(
+        -webkit-mask-image: linear-gradient(
             to left,
             transparent 40%,
             black 50%,

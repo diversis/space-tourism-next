@@ -43,13 +43,15 @@ export default function Home() {
     };
     const title: Variants = {
         hidden: {
-            mask: "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
-            maskPosition: "70% 0%",
-            maskSize: "800%",
-            WebkitMask:
+            maskImage:
                 "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
-            WebkitMaskPosition: "70% 0%",
+            WebkitMaskImage:
+                "linear-gradient(to left, transparent 40%,black 50%, black 60%,transparent 80%)",
+            maskSize: "800%",
             WebkitMaskSize: "800%",
+            maskPosition: "70% 0%",
+            WebkitMaskPosition: "70% 0%",
+
             opacity: 1,
         },
         visible: {
