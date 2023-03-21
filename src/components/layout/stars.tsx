@@ -7,7 +7,7 @@ import { useResizeDetector } from "react-resize-detector";
 // sky adapted from https://codepen.io/sharnajh/pen/WNvppRy
 
 export default function Stars() {
-    const [render, setRender] = useState(true);
+    const [render, setRender] = useState(false);
 
     const router = useRouter();
     const skyRef = useRef<HTMLDivElement>(null);

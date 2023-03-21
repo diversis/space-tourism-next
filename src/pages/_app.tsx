@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
             router.events.off("routeChangeComplete", end);
             router.events.off("routeChangeError", end);
         };
-    }, [router]);
+    }, [router.events]);
 
     return (
         <RWBProvider>
