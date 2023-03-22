@@ -37,7 +37,14 @@ export default function Layout({
                     }`}
                 </title>
 
-                <style>{`
+                <style>
+                    {path === "/404"
+                        ? `
+                body {
+                    background-image: url(/image/404.png);
+                }
+                `
+                        : `
                     body {
                         background-image: url(/image/${path.replace(
                             "/",
@@ -62,7 +69,8 @@ export default function Layout({
                             )}/background-${path.replace("/", "")}-desktop.jpg);
                         }
                     }
-                `}</style>
+                `}
+                </style>
             </Head>
             <AnimatePresence>{!loading && <Stars />}</AnimatePresence>
             <a
