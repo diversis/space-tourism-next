@@ -38,11 +38,11 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Layout loading={loading}>
                     <MotionConfig reducedMotion="user">
                         <AnimatePresence
-                            mode="wait"
+                            mode="popLayout"
                             initial={false}
                             onExitComplete={() => window.scrollTo(0, 0)}
                         >
-                            {loading ? (
+                            {loading && (
                                 <motion.div
                                     key="loader"
                                     initial={{ opacity: 0 }}
@@ -57,27 +57,26 @@ export default function App({ Component, pageProps }: AppProps) {
                                         ease: "linear",
                                     }}
                                     variants={APP_WRAPPER_VARIANTS}
-                                    className="grid h-full w-full grid-rows-[1fr] place-items-center "
+                                    className="absolute inset-0 grid grid-rows-[1fr] place-items-center "
                                 >
                                     <Loader />
                                 </motion.div>
-                            ) : (
-                                <motion.div
-                                    key="main-wrap"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{
-                                        opacity: 0,
-                                        transition: { duration: 0.3 },
-                                    }}
-                                    transition={{
-                                        duration: 0.3,
-                                    }}
-                                    className="flex h-full w-full flex-col items-center"
-                                >
-                                    <Component {...pageProps} />
-                                </motion.div>
                             )}
+                            <motion.div
+                                key="main-wrap"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{
+                                    opacity: 0,
+                                    transition: { duration: 0.3 },
+                                }}
+                                transition={{
+                                    duration: 0.3,
+                                }}
+                                className="flex h-full w-full flex-col items-center"
+                            >
+                                <Component {...pageProps} />
+                            </motion.div>
                         </AnimatePresence>
                     </MotionConfig>
                 </Layout>
